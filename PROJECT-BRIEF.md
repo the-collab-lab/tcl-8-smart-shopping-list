@@ -132,7 +132,7 @@ When you and your pair partner have working code that you believe is ready to be
 1. Create a “[pull request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request)” (PR).
 2. Notify the other pair team in Slack that you have a new PR for them to review.
 3. Incorporate feedback from the other pair team into your work until both you and they are satisfied the code is ready to be merged.
-4. Request that Andrew or one of the mentors review the PR for final approval.
+4. Request that your mentors review the PR for final approval.
 5. Once approved, merge the PR into `master`. (Your code will be built and deployed to production automatically thanks to [Netlify](https://www.netlify.com).)
 6. Check your work on the [production site](https://tcl-8-smart-shopping-app.netlify.app).
 7. Celebrate! 🥳
