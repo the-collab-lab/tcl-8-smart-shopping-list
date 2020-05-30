@@ -7,11 +7,11 @@ The goal of this project is to work together to build a “smart” shopping lis
 This project is based on [iNeedToBuy.xyz](https://app.ineedtobuy.xyz/), a mobile web app I built for my own use last year. You’re welcome to look at the [GitHub repo for that site](https://github.com/segdeha/ineedtobuy.xyz) if you get stuck and want a hint!
 
 ### Locations for things
-* Site: {link to cohort live site}
-* Repo: {link to cohort repo}
-* Clone URL: {clone URL}
-* Issue list: {link to cohort repo issues}
-* Database: {link to cohort firebase database}
+* Site: [https://tcl-8-smart-shopping-app.netlify.app/](tcl-8-smart-shopping-app.netlify.app)
+* Repo: [https://github.com/the-collab-lab/tcl-8-smart-shopping-list](github.com/the-collab-lab/tcl-8-smart-shopping-list)
+* Clone URL: `git@github.com:the-collab-lab/tcl-8-smart-shopping-list.git`
+* Issue list: [https://github.com/the-collab-lab/tcl-8-smart-shopping-list/projects/1](github.com/the-collab-lab/tcl-8-smart-shopping-list/projects/1)
+* Database: [https://console.firebase.google.com/u/0/project/tcl-8-smart-shopping-lis-a6069/database/firestore/data~2F](console.firebase.google.com/u/0/project/tcl-8-smart-shopping-lis-a6069/database/firestore/data~2F)
 
 ### Project cadence & duration
 The project is expected to take 40 hours per participant, spread over 8 weeks.
