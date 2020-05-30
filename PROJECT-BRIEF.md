@@ -7,7 +7,7 @@ The goal of this project is to work together to build a “smart” shopping lis
 This project is based on [iNeedToBuy.xyz](https://app.ineedtobuy.xyz/), a mobile web app I built for my own use last year. You’re welcome to look at the [GitHub repo for that site](https://github.com/segdeha/ineedtobuy.xyz) if you get stuck and want a hint!
 
 ### Locations for things
-* Site: [https://tcl-8-smart-shopping-app.netlify.app/](tcl-8-smart-shopping-app.netlify.app)
+* Site: [https://tcl-8-smart-shopping-app.netlify.app](tcl-8-smart-shopping-app.netlify.app)
 * Repo: [https://github.com/the-collab-lab/tcl-8-smart-shopping-list](github.com/the-collab-lab/tcl-8-smart-shopping-list)
 * Clone URL: `git@github.com:the-collab-lab/tcl-8-smart-shopping-list.git`
 * Issue list: [https://github.com/the-collab-lab/tcl-8-smart-shopping-list/projects/1](github.com/the-collab-lab/tcl-8-smart-shopping-list/projects/1)
@@ -93,7 +93,7 @@ A week sounds like a long time in some ways, but part of working on a team is ac
 Having watched many cohorts before yours, our advice is to front-load the work as much as possible in the first couple of days of each week. Some of the stories are trickier than they appear on the surface!
 
 ### How to know what to do
-The project is organized in GitHub as a set of [user stories](https://www.mountaingoatsoftware.com/agile/user-stories), each with a description of the desired functionality as well as [acceptance criteria](https://www.leadingagile.com/2014/09/acceptance-criteria/) (AC) that describe how you know whether the task or story is complete. You can find the stories on [the project board]({link to the cohort repo project board}) on GitHub.
+The project is organized in GitHub as a set of [user stories](https://www.mountaingoatsoftware.com/agile/user-stories), each with a description of the desired functionality as well as [acceptance criteria](https://www.leadingagile.com/2014/09/acceptance-criteria/) (AC) that describe how you know whether the task or story is complete. You can find the stories on [the project board](https://github.com/the-collab-lab/tcl-8-smart-shopping-list/projects/1) on GitHub.
 
 A task or story is “done” when the following are all true:
 
@@ -133,8 +133,8 @@ When you and your pair partner have working code that you believe is ready to be
 2. Notify the other pair team in Slack that you have a new PR for them to review.
 3. Incorporate feedback from the other pair team into your work until both you and they are satisfied the code is ready to be merged.
 4. Request that Andrew or one of the mentors review the PR for final approval.
-5. Once approved, merge the PR into `master`. (Your code will be built and deployed to production automatically thanks to [Netlify](https://www.netlify.com/).)
-6. Check your work on the [production site]({link to cohort live site}).
+5. Once approved, merge the PR into `master`. (Your code will be built and deployed to production automatically thanks to [Netlify](https://www.netlify.com).)
+6. Check your work on the [production site](https://tcl-8-smart-shopping-app.netlify.app).
 7. Celebrate! 🥳
 
 ### What else?
