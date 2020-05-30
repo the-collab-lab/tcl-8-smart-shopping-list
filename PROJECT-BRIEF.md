@@ -84,11 +84,11 @@ In our retros, we will share appreciations of our teammates as well as talk abou
 
 A week sounds like a long time in some ways, but part of working on a team is accounting for coordination costs. Let’s walk back our goal of demoing from the production URL on Sundays to see when different things need to happen.
 
-* Sunday — Demo on production!
-* Saturday — Respond to mentor feedback on PRs
-* Friday — Respond to/give peer feedback on PRs and ping mentors for feedback
-* Thursday — Complete story and ask for peer feedback
 * Monday, Tuesday, Wednesday — Work out approach, research if needed, pair program
+* Thursday — Complete story and ask for peer feedback
+* Friday — Respond to/give peer feedback on PRs and ping mentors for feedback
+* Saturday — Respond to mentor feedback on PRs
+* Sunday — Demo on production!
 
 Having watched many cohorts before yours, our advice is to front-load the work as much as possible in the first couple of days of each week. Some of the stories are trickier than they appear on the surface!
 
