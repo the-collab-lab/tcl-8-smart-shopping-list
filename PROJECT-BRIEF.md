@@ -21,36 +21,36 @@ Each week, the team of 4 developers will split into 2 pairs of 2 developers each
 Pairings will go as follows:
 
 #### Week 1, {start date - end date}
-1. {Name} & {Name}
-2. {Name} & {Name}
+1. Francesca & Marco
+2. Shajia & Ali
 
 #### Week 2, {start date - end date}
-1. {Name} & {Name}
-2. {Name} & {Name}
+1. Shajia & Francesca
+2. Marco & Ali
 
 #### Week 3, {start date - end date}
-1. {Name} & {Name}
-2. {Name} & {Name}
+1. Shajia & Marco
+2. Francesca & Ali
 
 #### Week 4, {start date - end date}
-1. {Name} & {Name}
-2. {Name} & {Name}
+1. Francesca & Marco
+2. Shajia & Ali
 
 #### Week 5, {start date - end date}
-1. {Name} & {Name}
-2. {Name} & {Name}
+1. Shajia & Francesca
+2. Marco & Ali
 
 #### Week 6, {start date - end date}
-1. {Name} & {Name}
-2. {Name} & {Name}
+1. Shajia & Marco
+2. Francesca & Ali
 
 #### Week 7, {start date - end date}
-1. {Name} & {Name}
-2. {Name} & {Name}
+1. Francesca & Marco
+2. Shajia & Ali
 
 #### Week 8, {start date - end date}
-1. {Name} & {Name}
-2. {Name} & {Name}
+1. Shajia & Francesca
+2. Marco & Ali
 
 ### Pair Programming
 
