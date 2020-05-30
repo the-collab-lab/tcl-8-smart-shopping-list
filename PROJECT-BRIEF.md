@@ -101,7 +101,7 @@ A task or story is “done” when the following are all true:
 * Tests have been written to validate the “[happy path](https://en.wikipedia.org/wiki/Happy_path)”
 * In the case of a UI feature, it has been reviewed for [accessibility](https://accessibilityinsights.io/)
 * The code to complete the task or implement the feature has been reviewed and approved by the other pair of developers
-* The [Product Owner](https://www.agilealliance.org/glossary/product-owner/) (i.e. Andrew or 1 of the mentors) has accepted the work as satisfactorily meeting the requirements
+* The [Product Owner](https://www.agilealliance.org/glossary/product-owner/) (i.e. one of the mentors) has accepted the work as satisfactorily meeting the requirements
 
 The “backlog” (the collection of stories) represents the work needed to complete the project. At the point when all of the stories are done, we should have a working app!
 
