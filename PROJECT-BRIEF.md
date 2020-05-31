@@ -20,35 +20,35 @@ Each week, the team of 4 developers will split into 2 pairs of 2 developers each
 
 Pairings will go as follows:
 
-#### Week 1, {start date - end date}
+#### Week 1, June 1 – 7
 1. Francesca & Marco
 2. Shajia & Ali
 
-#### Week 2, {start date - end date}
+#### Week 2, June 8 – 14
 1. Shajia & Francesca
 2. Marco & Ali
 
-#### Week 3, {start date - end date}
+#### Week 3, June 15 – 21
 1. Shajia & Marco
 2. Francesca & Ali
 
-#### Week 4, {start date - end date}
+#### Week 4, June 22 – 28
 1. Francesca & Marco
 2. Shajia & Ali
 
-#### Week 5, {start date - end date}
+#### Week 5, June 29 – July 5
 1. Shajia & Francesca
 2. Marco & Ali
 
-#### Week 6, {start date - end date}
+#### Week 6, July 6 – 12
 1. Shajia & Marco
 2. Francesca & Ali
 
-#### Week 7, {start date - end date}
+#### Week 7, July 13 – 19
 1. Francesca & Marco
 2. Shajia & Ali
 
-#### Week 8, {start date - end date}
+#### Week 8, July 20 – 26
 1. Shajia & Francesca
 2. Marco & Ali
 
