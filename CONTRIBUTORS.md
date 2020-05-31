@@ -9,3 +9,4 @@ Stacie Taylor
 ## Code of Conduct Contacts
 
 Michelle Sauque
+Shajia Abidi
