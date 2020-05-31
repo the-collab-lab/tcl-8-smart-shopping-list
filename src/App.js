@@ -4,6 +4,8 @@ import { NavLink, Route } from 'react-router-dom';
 import AddItem from './components/AddItem';
 import List from './components/List';
 
+import ReadWrite from './components/ReadWrite';
+
 function App() {
   return (
     <div>
@@ -11,8 +13,8 @@ function App() {
         <h1>Shopping List</h1>
       </header>
       <main>
-        <Route exact path="/" component={List} />
-        <Route path="/addItem" component={AddItem} />
+        <Route exact path="/" component={List}/>
+        <Route path="/addItem" component={AddItem}/>
       </main>
       <div className="nav">
         {/* NavLink is used here instead of Link for the activeClassName property */}
@@ -20,6 +22,7 @@ function App() {
           <NavLink exact to="/" activeClassName="active">
             List
           </NavLink>
+          <ReadWrite/>
         </div>
         <div>
           <NavLink exact to="/addItem" activeClassName="active">
