@@ -1,9 +1,30 @@
-import React from 'react';
-import { FirestoreCollection } from 'react-firestore';
+import React, { useState } from 'react';
+import { FirestoreCollection, withFirestore } from 'react-firestore';
 
-export default function ReadWrite() {
+function ReadWrite(props) {
+  const { firestore } = props;
+  const [enteredValue, setEnteredValue] = useState();
+
+  const addMsg = e => {
+    e.preventDefault();
+    firestore.collection('example').add({
+      msg: enteredValue,
+    });
+  };
+
   return (
     <div>
+      <form>
+        <input
+          type="text"
+          name="msg"
+          placeholder="enter your message here..."
+          onChange={e => setEnteredValue(e.target.value)}
+        />
+        <button type="submit" onClick={e => addMsg(e)}>
+          Submit
+        </button>
+      </form>
       <FirestoreCollection
         path="example"
         render={({ isLoading, data }) => {
@@ -12,7 +33,7 @@ export default function ReadWrite() {
           ) : (
             <div>
               <h1>Messages</h1>
-              <ul>
+              <ul style={{ listStyleType: 'none' }}>
                 {data.map(msg => (
                   <li key={msg.id}>{msg.msg}</li>
                 ))}
@@ -24,3 +45,5 @@ export default function ReadWrite() {
     </div>
   );
 }
+
+export default withFirestore(ReadWrite);
