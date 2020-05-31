@@ -2,6 +2,8 @@
 
 ## Cohort Participants
 
+Ali Lynne Thompson
+
 ## Mentors
 
 Stacie Taylor
