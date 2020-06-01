@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { Link, Route, Switch } from 'react-router-dom';
+import { NavLink, Route } from 'react-router-dom';
 import AddItem from './components/AddItem';
 import List from './components/List';
 
@@ -10,10 +10,14 @@ function App() {
     <div>
       <div className="nav">
         <div>
-          <Link to="/">List</Link>
+          <NavLink exact to="/" activeClassName="active">
+            List
+          </NavLink>
         </div>
         <div>
-          <Link to="/addItem">Add Item</Link>
+          <NavLink exact to="/addItem" activeClassName="active">
+            Add Item
+          </NavLink>
         </div>
       </div>
       <Route exact path="/" component={List} />
