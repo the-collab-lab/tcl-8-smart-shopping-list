@@ -21,35 +21,35 @@ Each week, the team of 4 developers will split into 2 pairs of 2 developers each
 Pairings will go as follows:
 
 #### Week 1, June 1 – 7
-1. Francesca & Marco
+1. Lily & Marco
 2. Shajia & Ali
 
 #### Week 2, June 8 – 14
-1. Shajia & Francesca
+1. Shajia & Lily
 2. Marco & Ali
 
 #### Week 3, June 15 – 21
 1. Shajia & Marco
-2. Francesca & Ali
+2. Lily & Ali
 
 #### Week 4, June 22 – 28
-1. Francesca & Marco
+1. Lily & Marco
 2. Shajia & Ali
 
 #### Week 5, June 29 – July 5
-1. Shajia & Francesca
+1. Shajia & Lily
 2. Marco & Ali
 
 #### Week 6, July 6 – 12
 1. Shajia & Marco
-2. Francesca & Ali
+2. Lily & Ali
 
 #### Week 7, July 13 – 19
-1. Francesca & Marco
+1. Lily & Marco
 2. Shajia & Ali
 
 #### Week 8, July 20 – 26
-1. Shajia & Francesca
+1. Shajia & Lily
 2. Marco & Ali
 
 ### Pair Programming
@@ -98,7 +98,7 @@ The project is organized in GitHub as a set of [user stories](https://www.mounta
 A task or story is “done” when the following are all true:
 
 * The AC have been met
-* Tests have been written to validate the “[happy path](https://en.wikipedia.org/wiki/Happy_path)”
+* Optionally, tests have been written to validate the “[happy path](https://en.wikipedia.org/wiki/Happy_path)”
 * In the case of a UI feature, it has been reviewed for [accessibility](https://accessibilityinsights.io/)
 * The code to complete the task or implement the feature has been reviewed and approved by the other pair of developers
 * The [Product Owner](https://www.agilealliance.org/glossary/product-owner/) (i.e. one of the mentors) has accepted the work as satisfactorily meeting the requirements
