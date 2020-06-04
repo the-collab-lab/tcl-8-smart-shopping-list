@@ -5,10 +5,13 @@ import { NavLink, Route } from 'react-router-dom';
 import AddItem from './components/AddItem';
 import List from './components/List';
 
+// any css was added in index.css
+
 function App() {
   return (
     <div>
       <div className="nav">
+        {/* NavLink is used here instead of Link for the activeClassName property */}
         <div>
           <NavLink exact to="/" activeClassName="active">
             List
