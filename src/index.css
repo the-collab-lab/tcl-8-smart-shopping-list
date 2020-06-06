@@ -3,7 +3,7 @@ html {
   min-height: 100%;
 }
 body {
-  margin: 0 0 100px;
+  margin-bottom: 100px;
   padding: 25px;
 }
 .nav {
@@ -12,6 +12,7 @@ body {
   bottom: 0;
   width: 100%;
   overflow: hidden;
+  text-transform: uppercase;
 }
 
 .nav div {
@@ -22,6 +23,15 @@ body {
   text-align: center;
 }
 
+a {
+  text-decoration: none;
+}
+
 .active {
-  color: red;
+  color: black;
+  text-decoration: underline;
+}
+
+header {
+  text-align: center;
 }

@@ -1,15 +1,19 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { NavLink, Route } from 'react-router-dom';
 import AddItem from './components/AddItem';
 import List from './components/List';
 
-// any css was added in index.css
-
 function App() {
   return (
     <div>
+      <header>
+        <h1>Shopping List</h1>
+      </header>
+      <main>
+        <Route exact path="/" component={List} />
+        <Route path="/addItem" component={AddItem} />
+      </main>
       <div className="nav">
         {/* NavLink is used here instead of Link for the activeClassName property */}
         <div>
@@ -23,8 +27,6 @@ function App() {
           </NavLink>
         </div>
       </div>
-      <Route exact path="/" component={List} />
-      <Route path="/addItem" component={AddItem} />
     </div>
   );
 }
