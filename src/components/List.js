@@ -11,7 +11,6 @@ const List = () => {
             <p>loading...</p>
           ) : (
             <div>
-              <h1>Messages</h1>
               <ul style={{ listStyleType: 'none' }}>
                 {data.map(msg => (
                   <li key={msg.id}>{msg.msg}</li>

@@ -10,6 +10,8 @@ const AddItem = props => {
     firestore.collection('example').add({
       msg: enteredValue,
     });
+
+    setEnteredValue('');
   };
   return (
     <>
@@ -20,6 +22,7 @@ const AddItem = props => {
           name="msg"
           placeholder="enter your message here..."
           onChange={e => setEnteredValue(e.target.value)}
+          value={enteredValue}
         />
         <button type="submit" onClick={e => addMsg(e)}>
           Submit
