@@ -26,31 +26,31 @@ Pairings will go as follows:
 
 #### Week 2, June 8 – 14
 1. Shajia & Lily
-2. Marco & Ali
+2. Luka & Ali
 
 #### Week 3, June 15 – 21
-1. Shajia & Marco
+1. Shajia & Luka
 2. Lily & Ali
 
 #### Week 4, June 22 – 28
-1. Lily & Marco
+1. Lily & Luka
 2. Shajia & Ali
 
 #### Week 5, June 29 – July 5
 1. Shajia & Lily
-2. Marco & Ali
+2. Luka & Ali
 
 #### Week 6, July 6 – 12
-1. Shajia & Marco
+1. Shajia & Luka
 2. Lily & Ali
 
 #### Week 7, July 13 – 19
-1. Lily & Marco
+1. Lily & Luka
 2. Shajia & Ali
 
 #### Week 8, July 20 – 26
 1. Shajia & Lily
-2. Marco & Ali
+2. Luka & Ali
 
 ### Pair Programming
 
