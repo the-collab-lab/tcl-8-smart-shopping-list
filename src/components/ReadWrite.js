@@ -16,6 +16,7 @@ function ReadWrite(props) {
     <>
       <form>
         <input
+          title="message"
           type="text"
           name="msg"
           placeholder="enter your message here..."
