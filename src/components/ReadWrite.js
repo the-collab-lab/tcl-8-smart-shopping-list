@@ -13,7 +13,7 @@ function ReadWrite(props) {
   };
 
   return (
-    <div>
+    <>
       <form>
         <input
           type="text"
@@ -42,7 +42,7 @@ function ReadWrite(props) {
           );
         }}
       />
-    </div>
+    </>
   );
 }
 
