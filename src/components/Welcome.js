@@ -14,11 +14,11 @@ const Welcome = () => {
   };
 
   const checkForToken = () => {
-    return localStorage.getItem('groceryToken') ? true : false;
+    return localStorage.getItem('userToken') ? true : false;
   };
 
   const saveToken = token => {
-    localStorage.setItem('groceryToken', token);
+    localStorage.setItem('userToken', token);
     console.log('token saved!');
   };
 
