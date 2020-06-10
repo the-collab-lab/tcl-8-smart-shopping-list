@@ -63,9 +63,7 @@ const AddItem = props => {
             value={enteredValue.nextPurchase}
             onChange={handleChange}
           >
-            <option value="7" defaultValue>
-              Soon
-            </option>
+            <option value="7">Soon</option>
             <option value="14">Kind of Soon</option>
             <option value="30">Not soon</option>
           </select>
