@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { withFirestore } from 'react-firestore';
+import '../styles/AddItem.css'
+import { v4 as uuidv4 } from 'uuid';
+
 
 const AddItem = props => {
   const emptyShoppingItem = {
@@ -19,16 +22,25 @@ const AddItem = props => {
   const addItem = e => {
     e.preventDefault();
 
-    firestore.collection('shoppingList').add({
-      name: enteredValue.name,
-      lastPurchasedDate: enteredValue.lastPurchasedDate, // or null
-      nextPurchase: enteredValue.nextPurchase,
-    });
+    if(enteredValue.name === ''){
+      alert('Please enter a value')
+    } else {
+      const userToken = uuidv4(); 
 
-    setEnteredValue(emptyShoppingItem);
+      firestore.collection('shoppingList').add({
+        name: enteredValue.name,
+        lastPurchasedDate: enteredValue.lastPurchasedDate, // or null
+        nextPurchase: enteredValue.nextPurchase,
+        //! Add token to the db
+        //! token: userToken
+      });
+
+      setEnteredValue(emptyShoppingItem);
+    }
   };
+
   return (
-    <>
+    <div class="form">
       <form>
         <label>
           Item name
@@ -59,7 +71,7 @@ const AddItem = props => {
           Add Item
         </button>
       </form>
-    </>
+    </div>
   );
 };
 
