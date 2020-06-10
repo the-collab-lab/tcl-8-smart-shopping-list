@@ -30,28 +30,32 @@ const AddItem = props => {
   return (
     <>
       <form>
-        <input
-          title="shopping list item"
-          type="text"
-          name="name"
-          placeholder="Eggs"
-          onChange={handleChange}
-          value={enteredValue.name}
-        />
-        <select
-          type="text"
-          name="nextPurchase"
-          value={enteredValue.nextPurchase}
-          onChange={handleChange}
-        >
-          <option value="7" defaultValue>
-            Soon
-          </option>
-          <option value="14">Kind of Soon</option>
-          <option value="30">Not soon</option>
-        </select>
-
-        <button type="submit" onClick={e => addItem(e)}>
+        <label>
+          Item name
+          <input
+            type="text"
+            name="name"
+            placeholder="Eggs"
+            onChange={handleChange}
+            value={enteredValue.name}
+          />
+        </label>
+        <label>
+          How soon do you expect to buy this again?
+          <select
+            type="text"
+            name="nextPurchase"
+            value={enteredValue.nextPurchase}
+            onChange={handleChange}
+          >
+            <option value="7" defaultValue>
+              Soon
+            </option>
+            <option value="14">Kind of Soon</option>
+            <option value="30">Not soon</option>
+          </select>
+        </label>
+        <button type="submit" onClick={addItem}>
           Add Item
         </button>
       </form>
