@@ -8,7 +8,7 @@ const AddItem = props => {
   const emptyShoppingItem = {
     name: '',
     lastPurchasedDate: null,
-    nextPurchase: '',
+    nextPurchase: 7,
   };
 
   const { firestore } = props;

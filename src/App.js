@@ -8,7 +8,7 @@ function App() {
   return (
     <div>
       <header>
-        <h1>Shopping List</h1>
+        <h1>Smart Shopping</h1>
       </header>
       <main>
         <Route exact path="/" component={List} />
