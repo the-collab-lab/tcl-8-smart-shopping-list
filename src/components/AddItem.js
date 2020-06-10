@@ -10,8 +10,8 @@ const AddItem = props => {
   });
 
   const handleChange = e => {
-    console.log(enteredValue.name);
-    setEnteredValue({ [e.target.name]: e.target.value });
+    console.log('state', enteredValue);
+    setEnteredValue({ ...enteredValue, [e.target.name]: e.target.value });
   };
 
   const addMsg = e => {
@@ -42,11 +42,13 @@ const AddItem = props => {
         />
         <select
           type="text"
-          name="lastPurchasedDate"
-          value={enteredValue.lastPurchasedDate}
+          name="nextPurchase"
+          value={enteredValue.nextPurchase}
           onChange={handleChange}
         >
-          <option value="7">Soon</option>
+          <option value="7" defaultValue>
+            Soon
+          </option>
           <option value="14">Kind of Soon</option>
           <option value="30">Not soon</option>
         </select>
