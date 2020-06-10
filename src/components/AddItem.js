@@ -45,7 +45,7 @@ const AddItem = props => {
   })
 
   return (
-    <div class="form">
+    <div className="form">
       <form>
         <label>
           Item name
