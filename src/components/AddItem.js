@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import { withFirestore } from 'react-firestore';
 
 const AddItem = props => {
-  const { firestore } = props;
-  const [enteredValue, setEnteredValue] = useState({
+  const emptyShoppingItem = {
     name: '',
     lastPurchasedDate: null,
     nextPurchase: '',
-  });
+  };
+
+  const { firestore } = props;
+  const [enteredValue, setEnteredValue] = useState(emptyShoppingItem);
 
   const handleChange = e => {
     console.log('state', enteredValue);
@@ -17,17 +19,13 @@ const AddItem = props => {
   const addMsg = e => {
     e.preventDefault();
 
-    // firestore.collection('example').add({
-    //   msg: enteredValue,
-    // });
-
     firestore.collection('shoppingList').add({
       name: enteredValue.name,
       lastPurchasedDate: enteredValue.lastPurchasedDate, // or null
       nextPurchase: enteredValue.nextPurchase,
     });
 
-    setEnteredValue('');
+    setEnteredValue(emptyShoppingItem);
   };
   return (
     <>
