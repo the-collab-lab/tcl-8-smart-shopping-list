@@ -16,7 +16,7 @@ const AddItem = props => {
     setEnteredValue({ ...enteredValue, [e.target.name]: e.target.value });
   };
 
-  const addMsg = e => {
+  const addItem = e => {
     e.preventDefault();
 
     firestore.collection('shoppingList').add({
@@ -51,8 +51,8 @@ const AddItem = props => {
           <option value="30">Not soon</option>
         </select>
 
-        <button type="submit" onClick={e => addMsg(e)}>
-          Submit
+        <button type="submit" onClick={e => addItem(e)}>
+          Add Item
         </button>
       </form>
     </>
