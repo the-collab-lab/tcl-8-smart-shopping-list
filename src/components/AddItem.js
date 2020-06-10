@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { withFirestore } from 'react-firestore';
 import '../styles/AddItem.css'
 import { v4 as uuidv4 } from 'uuid';
@@ -14,6 +14,7 @@ const AddItem = props => {
   const { firestore } = props;
   const [enteredValue, setEnteredValue] = useState(emptyShoppingItem);
 
+
   const handleChange = e => {
     console.log('state', enteredValue);
     setEnteredValue({ ...enteredValue, [e.target.name]: e.target.value });
@@ -25,18 +26,23 @@ const AddItem = props => {
     if(enteredValue.name === ''){
       alert('Please enter a value')
     } else {
-      const userToken = uuidv4(); 
+      
 
       firestore.collection('shoppingList').add({
         name: enteredValue.name,
         lastPurchasedDate: enteredValue.lastPurchasedDate, // or null
         nextPurchase: enteredValue.nextPurchase,
-        token: userToken
+        token: localStorage.getItem("userToken")
       });
 
       setEnteredValue(emptyShoppingItem);
     }
   };
+
+  useEffect(() => {
+    const userToken = uuidv4();
+    localStorage.setItem("userToken", userToken);
+  })
 
   return (
     <div class="form">
