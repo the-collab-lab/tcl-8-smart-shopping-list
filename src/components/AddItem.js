@@ -31,8 +31,7 @@ const AddItem = props => {
         name: enteredValue.name,
         lastPurchasedDate: enteredValue.lastPurchasedDate, // or null
         nextPurchase: enteredValue.nextPurchase,
-        //! Add token to the db
-        //! token: userToken
+        token: userToken
       });
 
       setEnteredValue(emptyShoppingItem);
