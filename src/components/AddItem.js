@@ -14,7 +14,6 @@ const AddItem = props => {
   const [enteredValue, setEnteredValue] = useState(emptyShoppingItem);
 
   const handleChange = e => {
-    console.log('state', enteredValue);
     setEnteredValue({ ...enteredValue, [e.target.name]: e.target.value });
   };
 
@@ -22,17 +21,20 @@ const AddItem = props => {
     e.preventDefault();
 
     if (enteredValue.name === '') {
-      alert('Please enter a value');
+      alert('Please enter an item name');
     } else {
       firestore.collection('shoppingList').add({
         name: enteredValue.name,
-        lastPurchasedDate: enteredValue.lastPurchasedDate, // or null
-        nextPurchase: enteredValue.nextPurchase,
+        nextPurchase: parseInt(enteredValue.nextPurchase, 10),
         token: localStorage.getItem('userToken'),
       });
 
-      setEnteredValue(emptyShoppingItem);
+      resetInput();
     }
+  };
+
+  const resetInput = () => {
+    setEnteredValue(emptyShoppingItem);
   };
 
   useEffect(() => {
