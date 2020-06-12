@@ -1,4 +1,4 @@
-.form{
+.form {
   margin: 0 auto;
   width: 35%;
   border: 2px solid grey;
@@ -6,10 +6,11 @@
   height: 200px;
   box-shadow: 5px 10px #888888;
   border-radius: 5px;
-  font-family:Georgia, 'Times New Roman', Times, serif
+  font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
-input, select {
+input,
+select {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;

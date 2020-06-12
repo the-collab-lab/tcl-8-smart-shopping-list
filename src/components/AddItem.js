@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { withFirestore } from 'react-firestore';
-import '../styles/AddItem.css';
+import '../styles/AddItemForm.css';
 import { v4 as uuidv4 } from 'uuid';
 
-const AddItem = props => {
+const AddItemForm = props => {
   const emptyShoppingItem = {
     name: '',
     lastPurchasedDate: null,
@@ -76,4 +76,4 @@ const AddItem = props => {
   );
 };
 
-export default withFirestore(AddItem);
+export default withFirestore(AddItemForm);
