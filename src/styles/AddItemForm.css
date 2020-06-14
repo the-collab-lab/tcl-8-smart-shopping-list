@@ -1,0 +1,31 @@
+.form {
+  margin: 0 auto;
+  width: 35%;
+  border: 2px solid grey;
+  padding: 20px;
+  height: 200px;
+  box-shadow: 5px 10px #888888;
+  border-radius: 5px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+button {
+  width: 30%;
+  background-color: #166174;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: 2px solid;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+}

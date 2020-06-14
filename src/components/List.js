@@ -5,15 +5,17 @@ const List = () => {
   return (
     <>
       <FirestoreCollection
-        path="example"
+        path="shoppingList"
         render={({ isLoading, data }) => {
           return isLoading ? (
             <p>loading...</p>
           ) : (
             <div>
               <ul style={{ listStyleType: 'none' }}>
-                {data.map(msg => (
-                  <li key={msg.id}>{msg.msg}</li>
+                {data.map(item => (
+                  <li key={item.id}>
+                    {item.name} - next purchase in {item.nextPurchase} days
+                  </li>
                 ))}
               </ul>
             </div>
