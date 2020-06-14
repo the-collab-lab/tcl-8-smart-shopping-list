@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 const AddItemForm = props => {
   const emptyShoppingItem = {
     name: '',
-    lastPurchasedDate: null,
+    lastPurchasedDate: new Date().toDateString(),
     nextPurchase: 7,
   };
 
@@ -19,6 +19,7 @@ const AddItemForm = props => {
 
   const addItem = e => {
     e.preventDefault();
+    console.log(emptyShoppingItem.lastPurchasedDate)
 
     if (enteredValue.name === '') {
       alert('Please enter an item name');
