@@ -24,6 +24,7 @@ function App() {
     return localStorage.getItem('userToken') ? true : false;
   };
 
+  // token is saved locally, but not connected to firebase
   const saveToken = token => {
     localStorage.setItem('userToken', token);
     console.log('token saved!');
@@ -36,12 +37,8 @@ function App() {
   return (
     <div>
       <header>
-<<<<<<< HEAD
-        <h1>Smart Shopping</h1>
-=======
         <h1>Shopping List</h1>
         <p>Token: {token}</p>
->>>>>>> move token logic to app component
       </header>
       <main>
         <Route exact path="/">
