@@ -6,7 +6,7 @@ const Modal = (props) => {
     <div className='modal-wrapper'>
       <div onClick={props.setDisplay(false)} className='modal-backdrop' />
       <div className='modal-box'>
-        Error
+        Error Error
       </div>
     </div>
   )
