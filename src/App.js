@@ -6,6 +6,9 @@ import AddItem from './components/AddItem';
 import List from './components/List';
 import Welcome from './components/Welcome';
 import { Navigation } from './components/Navigation'
+import  Room  from './components/Room'
+
+import { UserProvider } from './context/context'
 
 import GetToken from './lib/token.js';
 
@@ -35,8 +38,10 @@ function App() {
   }, [push]);
 
   return (
+    <UserProvider>
     <div>
       <header>
+      {/* <Room /> */}
         <h1>Shopping List</h1>
         <p>Token: {token}</p>
       </header>
@@ -49,6 +54,7 @@ function App() {
       </main>
       <Navigation />
     </div>
+    </UserProvider>
   );
 }
 

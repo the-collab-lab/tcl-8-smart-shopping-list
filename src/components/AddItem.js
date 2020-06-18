@@ -1,9 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext, Fragment } from 'react';
 import { withFirestore } from 'react-firestore';
 import '../styles/AddItemForm.css';
 import { v4 as uuidv4 } from 'uuid';
+import UserContext from '../context/context'
+import Modal from './Modal'
 
 const AddItemForm = props => {
+
+  const {getShoppingList} = useContext(UserContext)
+  const [showModal, setModalDisplay] = useState(false)
+
   const emptyShoppingItem = {
     name: '',
     lastPurchasedDate: new Date().toDateString(),
@@ -21,18 +27,29 @@ const AddItemForm = props => {
     e.preventDefault();
     console.log(emptyShoppingItem.lastPurchasedDate)
 
+    const items = getShoppingList()
+
     if (enteredValue.name === '') {
       alert('Please enter an item name');
     } else {
-      firestore.collection('shoppingList').add({
-        name: enteredValue.name,
-        nextPurchase: parseInt(enteredValue.nextPurchase, 10),
-        token: localStorage.getItem('userToken'),
-      });
-
-      resetInput();
+      const result = items.filter(item => {
+        return item.name.toLowerCase() === enteredValue.name.toLocaleLowerCase()
+      })
+      if(result.length){
+        //! display error modal
+        setModalDisplay(true)
+        console.log("error")
+      } else {
+          firestore.collection('shoppingList').add({
+            name: enteredValue.name,
+            nextPurchase: parseInt(enteredValue.nextPurchase, 10),
+            token: localStorage.getItem('userToken'),
+          });
+      }
     }
-  };
+      resetInput();
+  }
+  
 
   const resetInput = () => {
     setEnteredValue(emptyShoppingItem);
@@ -44,7 +61,9 @@ const AddItemForm = props => {
   }, []);
 
   return (
-    <div className="form">
+    <Fragment>
+      {showModal && <Modal setDisplay={setModalDisplay}/>}
+      <div className="form">
       <form>
         <label>
           Item name
@@ -74,6 +93,7 @@ const AddItemForm = props => {
         </button>
       </form>
     </div>
+    </Fragment>
   );
 };
 
