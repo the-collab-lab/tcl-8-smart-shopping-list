@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext, Fragment } from 'react';
 import { withFirestore } from 'react-firestore';
 import '../styles/AddItemForm.css';
-import { v4 as uuidv4 } from 'uuid';
 import UserContext from '../context/context';
 import Modal from './Modal';
 
@@ -60,11 +59,6 @@ const AddItemForm = props => {
   const resetInput = () => {
     setEnteredValue(emptyShoppingItem);
   };
-
-  useEffect(() => {
-    const userToken = uuidv4();
-    localStorage.setItem('userToken', userToken);
-  }, []);
 
   return (
     <Fragment>

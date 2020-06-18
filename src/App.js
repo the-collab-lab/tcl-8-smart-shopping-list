@@ -20,7 +20,7 @@ function App() {
     const newToken = GetToken();
     saveToken(newToken);
     setToken(newToken);
-    push('/list');
+    push('/addItem');
   };
 
   const checkForToken = () => {
