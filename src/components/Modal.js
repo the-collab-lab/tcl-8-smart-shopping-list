@@ -1,18 +1,13 @@
-import React, { useContext } from "react";
-import '../styles/Modal.css'
+import React, { useContext } from 'react';
+import '../styles/Modal.css';
 
-const Modal = (props) => {  
+const Modal = props => {
   return (
-    <div className='modal-wrapper'>
-      <div onClick={props.setDisplay(false)} className='modal-backdrop' />
-      <div className='modal-box'>
-        Error Error
-      </div>
+    <div className="modal-wrapper">
+      <div className="modal-backdrop" />
+      <div className="modal-box">Error Error</div>
     </div>
-  )
-}
+  );
+};
 
 export default Modal;
-
-
-

@@ -5,10 +5,9 @@ import { Route } from 'react-router-dom';
 import AddItem from './components/AddItem';
 import List from './components/List';
 import Welcome from './components/Welcome';
-import { Navigation } from './components/Navigation'
-import  Room  from './components/Room'
+import { Navigation } from './components/Navigation';
 
-import { UserProvider } from './context/context'
+import { UserProvider } from './context/context';
 
 import GetToken from './lib/token.js';
 
@@ -39,21 +38,20 @@ function App() {
 
   return (
     <UserProvider>
-    <div>
-      <header>
-      {/* <Room /> */}
-        <h1>Shopping List</h1>
-        <p>Token: {token}</p>
-      </header>
-      <main>
-        <Route exact path="/">
-          <Welcome handleClick={handleClick} />
-        </Route>
-        <Route path="/list" component={List} />
-        <Route path="/addItem" component={AddItem} />
-      </main>
-      <Navigation />
-    </div>
+      <div>
+        <header>
+          <h1>Shopping List</h1>
+          <p>Token: {token}</p>
+        </header>
+        <main>
+          <Route exact path="/">
+            <Welcome handleClick={handleClick} />
+          </Route>
+          <Route path="/list" component={List} />
+          <Route path="/addItem" component={AddItem} />
+        </main>
+        <Navigation />
+      </div>
     </UserProvider>
   );
 }
