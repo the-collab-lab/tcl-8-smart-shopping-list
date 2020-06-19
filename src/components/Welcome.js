@@ -26,11 +26,14 @@ const Welcome = () => {
   return (
     <div>
       <h2>Welcome to ShoppingList</h2>
+      <p>Click "New List" to create a shopping list from scratch</p>
       <button onClick={createNewList}>New List</button>
       <label>
-        Join List
+        Join an existing list by typing in the list code
         <input type="text" placeholder="litton pawn tilth" />
-        <button onClick={e => saveToken(e.target.value)}>Join</button>
+        <button onClick={e => saveToken(e.target.value)}>
+          Join Existing List
+        </button>
       </label>
     </div>
   );
