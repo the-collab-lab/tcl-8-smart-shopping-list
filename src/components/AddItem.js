@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, Fragment } from 'react';
+import React, { useState, useContext, Fragment } from 'react';
 import { withFirestore } from 'react-firestore';
 import '../styles/AddItemForm.css';
 import UserContext from '../context/context';
@@ -31,11 +31,10 @@ const AddItemForm = props => {
       alert('Please enter an item name');
     } else {
       const removePunctuation = enteredValue.name.replace(
-        /(~|`|!|@|#|$|%|^|&|\*|\(|\)|{|}|\[|\]|;|:|\"|'|<|,|\.|>|\?|\/|\\|\||-|_|\+|=)/g,
+        /(~|`|!|@|#|$|%|^|&|\*|\(|\)|{|}|\[|\]|;|:|"|'|<|,|\.|>|\?|\/|\\|\||-|_|\+|=)/g,
         '',
       ); // removes punctuation
       const finalEnteredVal = removePunctuation.replace(/\s{2,}/g, ' '); // removes extra spacing
-      console.log(finalEnteredVal);
       const result = items.filter(item => {
         return item.name
           .toLowerCase()

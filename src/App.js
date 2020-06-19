@@ -50,7 +50,7 @@ function App() {
           <Route path="/list" component={List} />
           <Route path="/addItem" component={AddItem} />
         </main>
-        <Navigation />
+        {checkForToken() && <Navigation />}
       </div>
     </UserProvider>
   );
