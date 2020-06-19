@@ -13,7 +13,6 @@ const Welcome = ({ firestore }) => {
   let history = useHistory();
   const push = history.push;
 
-  //token is saved locally, but not connected to firebase
   const saveToken = token => {
     localStorage.setItem('userToken', token);
     console.log('token saved!');
