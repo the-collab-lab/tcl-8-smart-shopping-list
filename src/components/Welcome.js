@@ -1,5 +1,5 @@
 import React, { useState, useHistory } from 'react';
-
+import '../styles/Welcome.css';
 import GetToken from '../lib/token.js';
 
 // need to create a form handling the tokens
@@ -24,17 +24,21 @@ const Welcome = () => {
   };
 
   return (
-    <div>
+    <div className="Welcome">
       <h2>Welcome to ShoppingList</h2>
-      <p>Click "New List" to create a shopping list from scratch</p>
-      <button onClick={createNewList}>New List</button>
-      <label>
-        Join an existing list by typing in the list code
-        <input type="text" placeholder="litton pawn tilth" />
+      <div className="Welcome-NewList">
+        <p>Create a new list: </p>
+        <button onClick={createNewList}>New List</button>
+      </div>
+      <div className="Welcome-JoinList">
+        <label>
+          Join an existing list:
+          <input type="text" placeholder="litton pawn tilth" />
+        </label>
         <button onClick={e => saveToken(e.target.value)}>
           Join Existing List
         </button>
-      </label>
+      </div>
     </div>
   );
 };

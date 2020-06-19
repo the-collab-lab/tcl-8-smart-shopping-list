@@ -1,0 +1,14 @@
+.Welcome {
+  display: flex;
+  flex-direction: column;
+}
+
+.Welcome-NewList {
+  display: flex;
+  justify-content: space-between;
+}
+
+.Welcome-JoinList {
+  display: flex;
+  justify-content: space-between;
+}
