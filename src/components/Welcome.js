@@ -32,7 +32,6 @@ const Welcome = ({ firestore }) => {
         .where('token', '==', token)
         .get()
         .then(snapshot => {
-          console.log(snapshot);
           if (snapshot.empty) {
             alert('No shopping list with that token');
           } else {
