@@ -1,24 +1,56 @@
-import React, { useState, useHistory } from 'react';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { withFirestore } from 'react-firestore';
 import '../styles/Welcome.css';
 import GetToken from '../lib/token.js';
 
 // need to create a form handling the tokens
 // https://rangle.io/blog/simplifying-controlled-inputs-with-hooks/
 
-const Welcome = () => {
+const Welcome = ({ firestore }) => {
   const [token, setToken] = useState('');
 
-  //let history = useHistory();
-  //const push = history.push;
+  let history = useHistory();
+  const push = history.push;
 
-  // token is saved locally, but not connected to firebase
-  // const saveToken = token => {
-  //   localStorage.setItem('userToken', token);
-  //   console.log('token saved!');
-  // };
+  //token is saved locally, but not connected to firebase
+  const saveToken = token => {
+    localStorage.setItem('userToken', token);
+    console.log('token saved!');
+  };
+
+  const handleChange = e => {
+    setToken(e.target.value);
+  };
 
   const handleSubmitToken = e => {
     e.preventDefault();
+    if (token === undefined || token === '') {
+      alert('Please enter a token');
+    } else {
+      firestore
+        .collection('shoppingList')
+        .where('token', '==', token)
+        .get()
+        .then(snapshot => {
+          console.log(snapshot);
+          if (snapshot.empty) {
+            console.log('No matching docs');
+          } else {
+            saveToken(token);
+            push('/list');
+          }
+          // NOTE: not sure why the below doesn't work
+          // snapshot.forEach(doc => {
+          //   if (!doc.exists) {
+          //     console.log('No List With that token!');
+          //   } else {
+          //     saveToken(e.target.value);
+          //   }
+          // })
+        })
+        .catch(err => console.log(err));
+    }
 
     // check firebase for whether token exists
     // if yes, save the token into local storage and push to `/list`
@@ -27,9 +59,9 @@ const Welcome = () => {
 
   const createNewList = () => {
     const newToken = GetToken();
-    // saveToken(newToken);
+    saveToken(newToken);
     setToken(newToken);
-    //push('/list');
+    push('/list');
   };
 
   return (
@@ -46,7 +78,7 @@ const Welcome = () => {
           <input
             type="text"
             placeholder="litton pawn tilth"
-            onChange={e => setToken(e.target.value)}
+            onChange={handleChange}
             value={token}
           />
         </label>
@@ -55,4 +87,4 @@ const Welcome = () => {
     </div>
   );
 };
-export default Welcome;
+export default withFirestore(Welcome);

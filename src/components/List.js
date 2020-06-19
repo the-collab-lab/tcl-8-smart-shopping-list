@@ -2,10 +2,12 @@ import React from 'react';
 import { FirestoreCollection } from 'react-firestore';
 
 const List = () => {
+  const token = localStorage.getItem('userToken');
   return (
     <>
       <FirestoreCollection
         path="shoppingList"
+        filter={['token', '==', token]}
         render={({ isLoading, data }) => {
           return isLoading ? (
             <p>loading...</p>
