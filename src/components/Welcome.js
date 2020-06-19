@@ -51,10 +51,6 @@ const Welcome = ({ firestore }) => {
         })
         .catch(err => console.log(err));
     }
-
-    // check firebase for whether token exists
-    // if yes, save the token into local storage and push to `/list`
-    // if no, alert("invalid code, try again")
   };
 
   const createNewList = () => {
