@@ -35,7 +35,7 @@ const Welcome = ({ firestore }) => {
         .then(snapshot => {
           console.log(snapshot);
           if (snapshot.empty) {
-            console.log('No matching docs');
+            alert('No shopping list with that token');
           } else {
             saveToken(token);
             push('/list');
