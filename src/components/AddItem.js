@@ -33,19 +33,26 @@ const AddItemForm = props => {
         /(~|`|!|@|#|$|%|^|&|\*|\(|\)|{|}|\[|\]|;|:|"|'|<|,|\.|>|\?|\/|\\|\||-|_|\+|=)/g,
         '',
       ); // removes punctuation
-      const finalEnteredVal = removePunctuation.replace(/\s{2,}/g, ''); // removes extra spacing
-      const result = items.filter(item => {        
+      const finalEnteredVal = removePunctuation.replace(/ +/g, "").toLowerCase(); // removes extra spacing
+
+      console.log(finalEnteredVal)
+
+      
+      const result = items.filter(item => {  
+        console.log(item.name.replace(/ +/g, "").toLowerCase())      
         return item.name.replace(/ +/g, "")
           .toLowerCase()
           .includes(finalEnteredVal.toLowerCase());
       });
+
+      console.log(result)
 
       if (result.length) {
         setModalDisplay(true);
         console.log('error');
       } else {
         firestore.collection('shoppingList').add({
-          name: enteredValue.name,
+          name: finalEnteredVal,
           nextPurchase: parseInt(enteredValue.nextPurchase, 10),
           token: localStorage.getItem('userToken'),
         });
