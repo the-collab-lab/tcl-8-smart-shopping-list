@@ -24,17 +24,11 @@ class UserProvider extends Component {
       })
   }
 
-  // updateList = (val) => {
-  //   console.log(val)
-  //   this.setState({updatingList: val })
-  // }
-
-
   getShoppingList = () => this.state.shoppingList;
 
   render() {
     const { children } = this.props
-    const { getShoppingList, updateList } = this
+    const { getShoppingList } = this
 
     return (
       <UserContext.Provider
