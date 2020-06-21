@@ -23,7 +23,6 @@ const AddItemForm = props => {
 
   const addItem = e => {
     e.preventDefault();
-    console.log(emptyShoppingItem.lastPurchasedDate);
 
     const items = getShoppingList();
 
@@ -34,14 +33,14 @@ const AddItemForm = props => {
         /(~|`|!|@|#|$|%|^|&|\*|\(|\)|{|}|\[|\]|;|:|"|'|<|,|\.|>|\?|\/|\\|\||-|_|\+|=)/g,
         '',
       ); // removes punctuation
-      const finalEnteredVal = removePunctuation.replace(/\s{2,}/g, ' '); // removes extra spacing
-      const result = items.filter(item => {
-        return item.name
+      const finalEnteredVal = removePunctuation.replace(/\s{2,}/g, ''); // removes extra spacing
+      const result = items.filter(item => {        
+        return item.name.replace(/ +/g, "")
           .toLowerCase()
-          .includes(finalEnteredVal.toLocaleLowerCase());
+          .includes(finalEnteredVal.toLowerCase());
       });
+
       if (result.length) {
-        //! display error modal
         setModalDisplay(true);
         console.log('error');
       } else {
