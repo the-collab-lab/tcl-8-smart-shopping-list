@@ -61,7 +61,7 @@ const Welcome = ({ firestore }) => {
     const newToken = GetToken();
     saveToken(newToken);
     setToken(newToken);
-    push('/list');
+    push('/addItem');
   };
 
   return (
