@@ -5,23 +5,36 @@ const UserContext = React.createContext()
 
 class UserProvider extends Component {
   state = {
-    shoppingList: []
+    shoppingList: [],
   }
 
   componentDidMount(){
     db.collection('shoppingList').get()
       .then(querySnapshot => {
         const data = querySnapshot.docs.map(doc => doc.data());
-        console.log(data)
         this.setState({shoppingList: data})
       })
   }
+
+  componentDidUpdate(){
+    db.collection('shoppingList').get()
+      .then(querySnapshot => {
+        const data = querySnapshot.docs.map(doc => doc.data());
+        this.setState({shoppingList: data})
+      })
+  }
+
+  // updateList = (val) => {
+  //   console.log(val)
+  //   this.setState({updatingList: val })
+  // }
+
 
   getShoppingList = () => this.state.shoppingList;
 
   render() {
     const { children } = this.props
-    const { getShoppingList } = this
+    const { getShoppingList, updateList } = this
 
     return (
       <UserContext.Provider

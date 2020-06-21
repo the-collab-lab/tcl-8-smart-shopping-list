@@ -21,6 +21,13 @@ const AddItemForm = props => {
     setEnteredValue({ ...enteredValue, [e.target.name]: e.target.value });
   };
 
+  const removePunctuation = (value) => {
+    return value.replace(
+      /(~|`|!|@|#|$|%|^|&|\*|\(|\)|{|}|\[|\]|;|:|"|'|<|,|\.|>|\?|\/|\\|\||-|_|\+|=)/g,
+      '').replace(/ +/g, "").toLowerCase()
+  }
+
+
   const addItem = e => {
     e.preventDefault();
 
@@ -29,33 +36,23 @@ const AddItemForm = props => {
     if (enteredValue.name === '') {
       alert('Please enter an item name');
     } else {
-      const removePunctuation = enteredValue.name.replace(
-        /(~|`|!|@|#|$|%|^|&|\*|\(|\)|{|}|\[|\]|;|:|"|'|<|,|\.|>|\?|\/|\\|\||-|_|\+|=)/g,
-        '',
-      ); // removes punctuation
-      const finalEnteredVal = removePunctuation.replace(/ +/g, "").toLowerCase(); // removes extra spacing
-
-      console.log(finalEnteredVal)
-
-      
+      const finalEnteredVal = removePunctuation(enteredValue.name)
+  
       const result = items.filter(item => {  
-        console.log(item.name.replace(/ +/g, "").toLowerCase())      
-        return item.name.replace(/ +/g, "")
-          .toLowerCase()
-          .includes(finalEnteredVal.toLowerCase());
+        return removePunctuation(item.name)
+          .includes(finalEnteredVal);
       });
-
-      console.log(result)
 
       if (result.length) {
         setModalDisplay(true);
         console.log('error');
       } else {
         firestore.collection('shoppingList').add({
-          name: finalEnteredVal,
+          name: enteredValue.name,
           nextPurchase: parseInt(enteredValue.nextPurchase, 10),
           token: localStorage.getItem('userToken'),
         });
+
       }
     }
     resetInput();
