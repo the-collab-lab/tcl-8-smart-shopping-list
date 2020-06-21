@@ -4,9 +4,6 @@ import { withFirestore } from 'react-firestore';
 import '../styles/Welcome.css';
 import GetToken from '../lib/token.js';
 
-// need to create a form handling the tokens
-// https://rangle.io/blog/simplifying-controlled-inputs-with-hooks/
-
 const Welcome = ({ firestore }) => {
   const [token, setToken] = useState('');
 

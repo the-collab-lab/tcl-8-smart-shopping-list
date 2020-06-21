@@ -8,14 +8,15 @@ import firebase from '@firebase/app';
 import '@firebase/firestore';
 import { FirestoreProvider } from 'react-firestore';
 
-const config = {
-  apiKey: 'AIzaSyDIYdDfqZAJ_BXyxtZL1gHBf5brDjOVQJA',
-  authDomain: 'tcl-8-smart-shopping-lis-a6069.firebaseapp.com',
-  databaseURL: 'https://tcl-8-smart-shopping-lis-a6069.firebaseio.com',
-  projectId: 'tcl-8-smart-shopping-lis-a6069',
-  storageBucket: 'tcl-8-smart-shopping-lis-a6069.appspot.com',
-  messagingSenderId: '471591173463',
-  appId: '1:471591173463:web:2981efcaef0dfe01939212',
+var config = {
+  apiKey: 'AIzaSyA7inPAhY1nDezxRpyag6Ht7pMT7-vvKfo',
+  authDomain: 'temporary-a0728.firebaseapp.com',
+  databaseURL: 'https://temporary-a0728.firebaseio.com',
+  projectId: 'temporary-a0728',
+  storageBucket: 'temporary-a0728.appspot.com',
+  messagingSenderId: '743045505807',
+  appId: '1:743045505807:web:e75a64fc34ea3e19e9547a',
+  measurementId: 'G-TN3WQCF659',
 };
 
 firebase.initializeApp(config);
@@ -24,12 +25,11 @@ firebase.initializeApp(config);
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
 
-
 ReactDOM.render(
   <BrowserRouter>
     <FirestoreProvider firebase={firebase}>
       <App />
     </FirestoreProvider>
   </BrowserRouter>,
-document.getElementById('root'),
+  document.getElementById('root'),
 );
