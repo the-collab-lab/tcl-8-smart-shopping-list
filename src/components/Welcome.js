@@ -13,7 +13,6 @@ const Welcome = ({ firestore }) => {
   let history = useHistory();
   const push = history.push;
 
-  //token is saved locally, but not connected to firebase
   const saveToken = token => {
     localStorage.setItem('userToken', token);
     console.log('token saved!');
@@ -33,7 +32,6 @@ const Welcome = ({ firestore }) => {
         .where('token', '==', token)
         .get()
         .then(snapshot => {
-          console.log(snapshot);
           if (snapshot.empty) {
             alert('No shopping list with that token');
           } else {
@@ -51,10 +49,6 @@ const Welcome = ({ firestore }) => {
         })
         .catch(err => console.log(err));
     }
-
-    // check firebase for whether token exists
-    // if yes, save the token into local storage and push to `/list`
-    // if no, alert("invalid code, try again")
   };
 
   const createNewList = () => {
