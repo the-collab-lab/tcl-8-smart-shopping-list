@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { withFirestore } from 'react-firestore';
 import '../styles/AddItemForm.css';
-import { v4 as uuidv4 } from 'uuid';
 
 const AddItemForm = props => {
   const emptyShoppingItem = {
@@ -19,7 +18,7 @@ const AddItemForm = props => {
 
   const addItem = e => {
     e.preventDefault();
-    console.log(emptyShoppingItem.lastPurchasedDate)
+    // console.log(emptyShoppingItem.lastPurchasedDate);
 
     if (enteredValue.name === '') {
       alert('Please enter an item name');
@@ -37,11 +36,6 @@ const AddItemForm = props => {
   const resetInput = () => {
     setEnteredValue(emptyShoppingItem);
   };
-
-  useEffect(() => {
-    const userToken = uuidv4();
-    localStorage.setItem('userToken', userToken);
-  }, []);
 
   return (
     <div className="form">
