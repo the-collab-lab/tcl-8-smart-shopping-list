@@ -8,17 +8,17 @@ import firebase from '@firebase/app';
 import '@firebase/firestore';
 import { FirestoreProvider } from 'react-firestore';
 
-const tempConfig = {
-  apiKey: 'AIzaSyD4ldHcZXlbmNFVu6YtBskH-vQve2gRIn8',
-  authDomain: 'testproject-63838.firebaseapp.com',
-  databaseURL: 'https://testproject-63838.firebaseio.com',
-  projectId: 'testproject-63838',
-  storageBucket: 'testproject-63838.appspot.com',
-  messagingSenderId: '282733444013',
-  appId: '1:282733444013:web:900af5c5dd1cf525',
+const firebaseConfig = {
+  apiKey: 'AIzaSyDIYdDfqZAJ_BXyxtZL1gHBf5brDjOVQJA',
+  authDomain: 'tcl-8-smart-shopping-lis-a6069.firebaseapp.com',
+  databaseURL: 'https://tcl-8-smart-shopping-lis-a6069.firebaseio.com',
+  projectId: 'tcl-8-smart-shopping-lis-a6069',
+  storageBucket: 'tcl-8-smart-shopping-lis-a6069.appspot.com',
+  messagingSenderId: '471591173463',
+  appId: '1:471591173463:web:2981efcaef0dfe01939212',
 };
 
-firebase.initializeApp(tempConfig);
+firebase.initializeApp(firebaseConfig);
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
