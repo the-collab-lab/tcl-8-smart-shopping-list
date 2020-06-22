@@ -5,7 +5,7 @@ import UserContext from '../context/context';
 import Modal from './Modal';
 
 const AddItemForm = props => {
-  const { getShoppingList } = useContext(UserContext);
+  const { shoppingList } = useContext(UserContext);
   const [showModal, setModalDisplay] = useState(false);
 
   const emptyShoppingItem = {
@@ -21,26 +21,28 @@ const AddItemForm = props => {
     setEnteredValue({ ...enteredValue, [e.target.name]: e.target.value });
   };
 
-  const removePunctuation = (value) => {
-    return value.replace(
-      /(~|`|!|@|#|$|%|^|&|\*|\(|\)|{|}|\[|\]|;|:|"|'|<|,|\.|>|\?|\/|\\|\||-|_|\+|=)/g,
-      '').replace(/ +/g, "").toLowerCase()
-  }
-
+  const removePunctuation = value => {
+    return value
+      .replace(
+        /(~|`|!|@|#|$|%|^|&|\*|\(|\)|{|}|\[|\]|;|:|"|'|<|,|\.|>|\?|\/|\\|\||-|_|\+|=)/g,
+        '',
+      )
+      .replace(/ +/g, '')
+      .toLowerCase();
+  };
 
   const addItem = e => {
     e.preventDefault();
 
-    const items = getShoppingList();
+    const items = shoppingList();
 
     if (enteredValue.name === '') {
       alert('Please enter an item name');
     } else {
-      const finalEnteredVal = removePunctuation(enteredValue.name)
-  
-      const result = items.filter(item => {  
-        return removePunctuation(item.name)
-          .includes(finalEnteredVal);
+      const finalEnteredVal = removePunctuation(enteredValue.name);
+
+      const result = items.filter(item => {
+        return removePunctuation(item.name).includes(finalEnteredVal);
       });
 
       if (result.length) {
@@ -52,7 +54,6 @@ const AddItemForm = props => {
           nextPurchase: parseInt(enteredValue.nextPurchase, 10),
           token: localStorage.getItem('userToken'),
         });
-
       }
     }
     resetInput();

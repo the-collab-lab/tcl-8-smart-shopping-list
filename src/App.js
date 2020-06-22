@@ -7,7 +7,7 @@ import List from './components/List';
 import Welcome from './components/Welcome';
 import { Navigation } from './components/Navigation';
 
-import { UserProvider } from './context/context';
+import ListContextProvider from './context/ListContext';
 
 import GetToken from './lib/token.js';
 
@@ -37,7 +37,7 @@ function App() {
   }, [push]);
 
   return (
-    <UserProvider>
+    <ListContextProvider>
       <div>
         <header>
           <h1>Shopping List</h1>
@@ -52,7 +52,7 @@ function App() {
         </main>
         {checkForToken() && <Navigation />}
       </div>
-    </UserProvider>
+    </ListContextProvider>
   );
 }
 
