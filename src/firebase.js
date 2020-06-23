@@ -8,7 +8,6 @@ const firebaseApp = firebase.initializeApp({
   storageBucket: 'collab-lab-testing.appspot.com',
   messagingSenderId: '1064259130718',
   appId: '1:1064259130718:web:c054308c211a44be9e6bcf',
-  measurementId: 'G-3L0C6R9NPY',
 });
 
 const db = firebaseApp.firestore();

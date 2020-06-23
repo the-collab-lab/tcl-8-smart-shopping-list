@@ -1,11 +1,11 @@
 import React, { useState, useContext, Fragment } from 'react';
 import { withFirestore } from 'react-firestore';
 import '../styles/AddItemForm.css';
-import UserContext from '../context/context';
+import { ListContext } from '../context/ListContext';
 import Modal from './Modal';
 
 const AddItemForm = props => {
-  const { shoppingList } = useContext(UserContext);
+  const { shoppingList } = useContext(ListContext);
   const [showModal, setModalDisplay] = useState(false);
 
   const emptyShoppingItem = {
@@ -21,36 +21,33 @@ const AddItemForm = props => {
     setEnteredValue({ ...enteredValue, [e.target.name]: e.target.value });
   };
 
-  const removePunctuation = value => {
-    return value
-      .replace(
-        /(~|`|!|@|#|$|%|^|&|\*|\(|\)|{|}|\[|\]|;|:|"|'|<|,|\.|>|\?|\/|\\|\||-|_|\+|=)/g,
-        '',
-      )
-      .replace(/ +/g, '')
-      .toLowerCase();
-  };
-
   const addItem = e => {
     e.preventDefault();
 
-    const items = shoppingList();
+    const items = shoppingList;
 
     if (enteredValue.name === '') {
       alert('Please enter an item name');
     } else {
-      const finalEnteredVal = removePunctuation(enteredValue.name);
+      const removePunctuation = enteredValue.name.replace(
+        /(~|`|!|@|#|$|%|^|&|\*|\(|\)|{|}|\[|\]|;|:|"|'|<|,|\.|>|\?|\/|\\|\||-|_|\+|=)/g,
+        '',
+      ); // removes punctuation
+      const finalEnteredVal = removePunctuation.replace(/\s{2,}/g, ' '); // removes extra spacing
+      console.log(finalEnteredVal);
 
       const result = items.filter(item => {
-        return removePunctuation(item.name).includes(finalEnteredVal);
+        return item.name.toLowerCase().includes(finalEnteredVal.toLowerCase());
       });
+
+      console.log(result);
 
       if (result.length) {
         setModalDisplay(true);
-        console.log('error');
+        console.log('duplicate: modal opens');
       } else {
         firestore.collection('shoppingList').add({
-          name: enteredValue.name,
+          name: finalEnteredVal,
           nextPurchase: parseInt(enteredValue.nextPurchase, 10),
           token: localStorage.getItem('userToken'),
         });

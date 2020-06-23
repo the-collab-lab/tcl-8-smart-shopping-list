@@ -7,13 +7,13 @@ const ListContextProvider = props => {
   const [shoppingList, setShoppingList] = useState([]);
 
   useEffect(() => {
-    db.collection('shoppingList')
-      .get()
-      .then(querySnapshot => {
-        const itemList = querySnapshot.docs.map(doc => doc.data());
-        setShoppingList(itemList);
-        console.log(shoppingList);
-      });
+    db.collection('shoppingList').onSnapshot(snapshot => {
+      const itemList = snapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setShoppingList(itemList);
+    });
   }, []);
 
   console.log(shoppingList);
