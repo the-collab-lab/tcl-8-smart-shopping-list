@@ -24,7 +24,6 @@ function App() {
     <div>
       <header>
         <h1>Shopping List</h1>
-        <p>Token: {token}</p>
       </header>
       <main>
         <Route exact path="/">
