@@ -1,6 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { FirestoreCollection } from 'react-firestore';
+import '../styles/List.css';
 
 const List = () => {
   const token = localStorage.getItem('userToken');
@@ -21,7 +22,7 @@ const List = () => {
           return isLoading ? (
             <p>loading...</p>
           ) : (
-            <div>
+            <div className="List">
               {!data.length ? (
                 <button onClick={handleClick}>Add First Item</button>
               ) : (
