@@ -33,11 +33,14 @@ const AddItemForm = props => {
         /(~|`|!|@|#|$|%|^|&|\*|\(|\)|{|}|\[|\]|;|:|"|'|<|,|\.|>|\?|\/|\\|\||-|_|\+|=)/g,
         '',
       ); // removes punctuation
-      const finalEnteredVal = removePunctuation.replace(/\s{2,}/g, ' '); // removes extra spacing
-      console.log(finalEnteredVal);
+      const finalEnteredVal = removePunctuation.replace(/\s{2,}/g, ''); // removes extra spacing
+      console.log('entered value: ', finalEnteredVal);
 
       const result = items.filter(item => {
-        return item.name.toLowerCase().includes(finalEnteredVal.toLowerCase());
+        return item.name
+          .toLowerCase()
+          .replace(/\s{1,}/g, '')
+          .includes(finalEnteredVal.toLowerCase().replace(/\s{1,}/g, ''));
       });
 
       console.log(result);
