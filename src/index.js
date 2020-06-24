@@ -10,12 +10,11 @@ import { FirestoreProvider } from 'react-firestore';
 
 serviceWorker.unregister();
 
-
 ReactDOM.render(
   <BrowserRouter>
     <FirestoreProvider firebase={firebase}>
       <App />
     </FirestoreProvider>
   </BrowserRouter>,
-document.getElementById('root'),
+  document.getElementById('root'),
 );

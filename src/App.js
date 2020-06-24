@@ -16,20 +16,8 @@ function App() {
   let history = useHistory();
   const push = history.push;
 
-  const handleClick = () => {
-    const newToken = GetToken();
-    saveToken(newToken);
-    setToken(newToken);
-    push('/addItem');
-  };
-
   const checkForToken = () => {
     return localStorage.getItem('userToken') ? true : false;
-  };
-
-  const saveToken = token => {
-    localStorage.setItem('userToken', token);
-    console.log('token saved!');
   };
 
   useEffect(() => {
@@ -45,12 +33,12 @@ function App() {
         </header>
         <main>
           <Route exact path="/">
-            <Welcome handleClick={handleClick} />
+            <Welcome />
           </Route>
           <Route path="/list" component={List} />
           <Route path="/addItem" component={AddItem} />
         </main>
-        {checkForToken() && <Navigation />}
+        <Navigation />
       </div>
     </ListContextProvider>
   );
