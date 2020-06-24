@@ -18,8 +18,6 @@ const AddItemForm = props => {
 
   const addItem = e => {
     e.preventDefault();
-    // console.log(emptyShoppingItem.lastPurchasedDate);
-
     if (enteredValue.name === '') {
       alert('Please enter an item name');
     } else {
@@ -27,6 +25,8 @@ const AddItemForm = props => {
         name: enteredValue.name,
         nextPurchase: parseInt(enteredValue.nextPurchase, 10),
         token: localStorage.getItem('userToken'),
+        numberOfPurchases: 1,
+        //! time: +new Date()
       });
 
       resetInput();

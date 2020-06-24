@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { FirestoreCollection } from 'react-firestore';
+import '../styles/List.css'
 
 const List = () => {
   const token = localStorage.getItem('userToken');
   return (
-    <>
       <FirestoreCollection
         path="shoppingList"
         filter={['token', '==', token]}
@@ -12,11 +12,12 @@ const List = () => {
           return isLoading ? (
             <p>loading...</p>
           ) : (
-            <div>
+            <div className="list">
               <ul style={{ listStyleType: 'none' }}>
                 {data.map(item => (
                   <li key={item.id}>
-                    {item.name} - next purchase in {item.nextPurchase} days
+                    <input type="checkbox" defaultChecked="true"/>
+                    <span>{item.name} - next purchase in {item.nextPurchase} days </span>
                   </li>
                 ))}
               </ul>
@@ -24,7 +25,6 @@ const List = () => {
           );
         }}
       />
-    </>
   );
 };
 
