@@ -1,13 +1,13 @@
 import firebase from 'firebase';
 
 const firebaseApp = firebase.initializeApp({
-  apiKey: 'AIzaSyB-5hzRrndort4EaDHzaVeyBIr3TwxYvqo',
-  authDomain: 'collab-lab-testing.firebaseapp.com',
-  databaseURL: 'https://collab-lab-testing.firebaseio.com',
-  projectId: 'collab-lab-testing',
-  storageBucket: 'collab-lab-testing.appspot.com',
-  messagingSenderId: '1064259130718',
-  appId: '1:1064259130718:web:c054308c211a44be9e6bcf',
+  apiKey: 'AIzaSyDIYdDfqZAJ_BXyxtZL1gHBf5brDjOVQJA',
+  authDomain: 'tcl-8-smart-shopping-lis-a6069.firebaseapp.com',
+  databaseURL: 'https://tcl-8-smart-shopping-lis-a6069.firebaseio.com',
+  projectId: 'tcl-8-smart-shopping-lis-a6069',
+  storageBucket: 'tcl-8-smart-shopping-lis-a6069.appspot.com',
+  messagingSenderId: '471591173463',
+  appId: '1:471591173463:web:2981efcaef0dfe01939212',
 });
 
 const db = firebaseApp.firestore();
