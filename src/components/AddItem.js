@@ -1,8 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, Fragment } from 'react';
 import { withFirestore } from 'react-firestore';
 import '../styles/AddItemForm.css';
+import { ListContext } from '../context/ListContext';
+import Modal from './Modal';
 
 const AddItemForm = props => {
+  const { shoppingList } = useContext(ListContext);
+  const [showModal, setModalDisplay] = useState(false);
+
   const emptyShoppingItem = {
     name: '',
     lastPurchasedDate: new Date().toDateString(),
@@ -18,19 +23,40 @@ const AddItemForm = props => {
 
   const addItem = e => {
     e.preventDefault();
-    // console.log(emptyShoppingItem.lastPurchasedDate);
+
+    const items = shoppingList;
 
     if (enteredValue.name === '') {
       alert('Please enter an item name');
     } else {
-      firestore.collection('shoppingList').add({
-        name: enteredValue.name,
-        nextPurchase: parseInt(enteredValue.nextPurchase, 10),
-        token: localStorage.getItem('userToken'),
+      const removePunctuation = enteredValue.name.replace(
+        /(~|`|!|@|#|$|%|^|&|\*|\(|\)|{|}|\[|\]|;|:|"|'|<|,|\.|>|\?|\/|\\|\||-|_|\+|=)/g,
+        '',
+      ); // removes punctuation
+      const finalEnteredVal = removePunctuation.replace(/\s{2,}/g, ''); // removes extra spacing
+      console.log('entered value: ', finalEnteredVal);
+
+      const result = items.filter(item => {
+        return item.name
+          .toLowerCase()
+          .replace(/\s{1,}/g, '')
+          .includes(finalEnteredVal.toLowerCase().replace(/\s{1,}/g, ''));
       });
 
-      resetInput();
+      console.log(result);
+
+      if (result.length) {
+        setModalDisplay(true);
+        console.log('duplicate: modal opens');
+      } else {
+        firestore.collection('shoppingList').add({
+          name: finalEnteredVal,
+          nextPurchase: parseInt(enteredValue.nextPurchase, 10),
+          token: localStorage.getItem('userToken'),
+        });
+      }
     }
+    resetInput();
   };
 
   const resetInput = () => {
@@ -38,36 +64,39 @@ const AddItemForm = props => {
   };
 
   return (
-    <div className="form">
-      <form>
-        <label>
-          Item name
-          <input
-            type="text"
-            name="name"
-            placeholder="Eggs"
-            onChange={handleChange}
-            value={enteredValue.name}
-          />
-        </label>
-        <label>
-          How soon do you expect to buy this again?
-          <select
-            type="text"
-            name="nextPurchase"
-            value={enteredValue.nextPurchase}
-            onChange={handleChange}
-          >
-            <option value="7">Soon</option>
-            <option value="14">Kind of Soon</option>
-            <option value="30">Not soon</option>
-          </select>
-        </label>
-        <button type="submit" onClick={addItem}>
-          Add Item
-        </button>
-      </form>
-    </div>
+    <Fragment>
+      {showModal && <Modal setDisplay={setModalDisplay} />}
+      <div className="form">
+        <form>
+          <label>
+            Item name
+            <input
+              type="text"
+              name="name"
+              placeholder="Eggs"
+              onChange={handleChange}
+              value={enteredValue.name}
+            />
+          </label>
+          <label>
+            How soon do you expect to buy this again?
+            <select
+              type="text"
+              name="nextPurchase"
+              value={enteredValue.nextPurchase}
+              onChange={handleChange}
+            >
+              <option value="7">Soon</option>
+              <option value="14">Kind of Soon</option>
+              <option value="30">Not soon</option>
+            </select>
+          </label>
+          <button type="submit" onClick={addItem}>
+            Add Item
+          </button>
+        </form>
+      </div>
+    </Fragment>
   );
 };
 
