@@ -7,6 +7,7 @@ const List = ({ firestore }) => {
 
   const handleChange = (e, item) => {
     const purchased = item.numberOfPurchases;
+    // TODO: Need some error handling here
     if (e.target.checked) {
       firestore
         .collection('shoppingList')
@@ -18,6 +19,7 @@ const List = ({ firestore }) => {
     }
   };
   return (
+    // TODO: Need to conditionally render the checkbox based on the lastPurchasedDate
     <FirestoreCollection
       path="shoppingList"
       filter={['token', '==', token]}
