@@ -6,7 +6,6 @@ const List = ({ firestore }) => {
   const token = localStorage.getItem('userToken');
 
   const handleChange = (e, item) => {
-    e.preventDefault();
     const purchased = item.numberOfPurchases;
     if (e.target.checked) {
       firestore
@@ -14,6 +13,7 @@ const List = ({ firestore }) => {
         .doc(item.id)
         .update({
           numberOfPurchases: purchased + 1,
+          lastPurchasedDate: new Date().toDateString(),
         });
     }
   };
