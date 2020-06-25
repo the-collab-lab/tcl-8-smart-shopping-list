@@ -55,6 +55,7 @@ const AddItemForm = props => {
           nextPurchase: parseInt(enteredValue.nextPurchase, 10),
           token: localStorage.getItem('userToken'),
           numberOfPurchases: 1,
+          lastPurchasedDate: new Date(),
         });
       }
     }
