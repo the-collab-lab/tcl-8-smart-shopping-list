@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import '../styles/Item.css';
 
 const Item = ({ item, handleChange }) => {
   const [checked, setChecked] = useState(false);
+  const className = checked ? 'completed' : '';
 
   useEffect(() => {
     const checkDate = () => {
@@ -26,7 +28,7 @@ const Item = ({ item, handleChange }) => {
         checked={checked}
         onChange={e => handleChange(e, item)}
       />
-      <span>
+      <span className={className}>
         {item.name} - next purchase in {item.nextPurchase} days{' '}
       </span>
     </li>
