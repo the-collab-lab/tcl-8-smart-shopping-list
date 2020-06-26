@@ -36,24 +36,32 @@ const AddItemForm = props => {
       const finalEnteredVal = removePunctuation.replace(/\s{2,}/g, ''); // removes extra spacing
       console.log('entered value: ', finalEnteredVal);
 
-      const result = items.filter(item => {
-        return item.name
-          .toLowerCase()
-          .replace(/\s{1,}/g, '')
-          .includes(finalEnteredVal.toLowerCase().replace(/\s{1,}/g, ''));
-      });
+      const result =
+        items.lengths &&
+        items.filter(item => {
+          return item.name
+            .toLowerCase()
+            .replace(/\s{1,}/g, '')
+            .includes(finalEnteredVal.toLowerCase().replace(/\s{1,}/g, ''));
+        });
 
-      console.log(result);
-
-      if (result.length) {
+      if (result && result.length) {
         setModalDisplay(true);
         console.log('duplicate: modal opens');
       } else {
-        firestore.collection('shoppingList').add({
-          name: finalEnteredVal,
-          nextPurchase: parseInt(enteredValue.nextPurchase, 10),
-          token: localStorage.getItem('userToken'),
-        });
+        const newToken = localStorage.getItem('userToken');
+        firestore
+          .collection('shoppingList')
+          .doc(newToken)
+          .set(
+            {
+              [newToken]: {
+                name: finalEnteredVal,
+                nextPurchase: parseInt(enteredValue.nextPurchase, 10),
+              },
+            },
+            { merge: true },
+          );
       }
     }
     resetInput();
