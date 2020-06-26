@@ -5,6 +5,9 @@ export const ListContext = createContext();
 
 const ListContextProvider = props => {
   const [shoppingList, setShoppingList] = useState([]);
+  const token = localStorage.getItem('userToken');
+
+  const filteredList = shoppingList.filter(item => item.token === token)
 
   useEffect(() => {
     db.collection('shoppingList').onSnapshot(snapshot => {
@@ -19,7 +22,7 @@ const ListContextProvider = props => {
   console.log(shoppingList);
 
   return (
-    <ListContext.Provider value={{ shoppingList }}>
+    <ListContext.Provider value={{ shoppingList, filteredList }}>
       {props.children}
     </ListContext.Provider>
   );
