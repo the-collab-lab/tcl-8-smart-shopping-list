@@ -1,5 +1,6 @@
 import React from 'react';
 import { FirestoreCollection, withFirestore } from 'react-firestore';
+import Item from './Item';
 import '../styles/List.css';
 
 const List = ({ firestore }) => {
@@ -14,7 +15,7 @@ const List = ({ firestore }) => {
         .doc(item.id)
         .update({
           numberOfPurchases: purchased + 1,
-          lastPurchasedDate: new Date().toDateString(),
+          lastPurchasedDate: new Date(),
         });
     }
   };
@@ -30,16 +31,7 @@ const List = ({ firestore }) => {
           <div className="list">
             <ul style={{ listStyleType: 'none' }}>
               {data.map(item => (
-                <li key={item.id}>
-                  <input
-                    type="checkbox"
-                    defaultChecked="true"
-                    onChange={e => handleChange(e, item)}
-                  />
-                  <span>
-                    {item.name} - next purchase in {item.nextPurchase} days{' '}
-                  </span>
-                </li>
+                <Item key={item.id} item={item} handleChange={handleChange} />
               ))}
             </ul>
           </div>
