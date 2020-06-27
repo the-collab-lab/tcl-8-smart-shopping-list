@@ -23,14 +23,16 @@ const Item = ({ item, handleChange }) => {
 
   return (
     <li>
-      <input
-        type="checkbox"
-        checked={checked}
-        onChange={e => handleChange(e, item)}
-      />
-      <span className={className}>
-        {item.name} - next purchase in {item.nextPurchase} days{' '}
-      </span>
+      <label>
+        <input
+          type="checkbox"
+          checked={checked}
+          onChange={e => handleChange(e, item)}
+        />
+        <span className={className}>
+          {item.name} - next purchase in {item.nextPurchase} days{' '}
+        </span>
+      </label>
     </li>
   );
 };
