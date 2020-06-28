@@ -24,7 +24,12 @@ const List = () => {
           ) : (
             <div className="List">
               {!data.length ? (
-                <button onClick={handleClick}>Add First Item</button>
+                <>
+                  <p>
+                    Press <b>'Add First Item'</b> to get started
+                  </p>
+                  <button onClick={handleClick}>Add First Item</button>
+                </>
               ) : (
                 <ul style={{ listStyleType: 'none' }}>
                   {data.map(item => (

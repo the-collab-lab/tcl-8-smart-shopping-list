@@ -43,8 +43,6 @@ const AddItemForm = props => {
           .includes(finalEnteredVal.toLowerCase().replace(/\s{1,}/g, ''));
       });
 
-      console.log(result);
-
       if (result.length) {
         setModalDisplay(true);
         console.log('duplicate: modal opens');

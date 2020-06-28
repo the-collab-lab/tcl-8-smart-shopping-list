@@ -16,8 +16,6 @@ const ListContextProvider = props => {
     });
   }, []);
 
-  console.log(shoppingList);
-
   return (
     <ListContext.Provider value={{ shoppingList }}>
       {props.children}
