@@ -20,15 +20,15 @@ const List = ({ firestore }) => {
     }
   };
   return (
-    // TODO: Need to conditionally render the checkbox based on the lastPurchasedDate
     <FirestoreCollection
       path="shoppingList"
       filter={['token', '==', token]}
-      render={({ isLoading, data }) => {
+      render={({ isLoading, data, error }) => {
         return isLoading ? (
           <p>loading...</p>
         ) : (
           <div className="list">
+            {error && <p>{error}</p>}
             <ul style={{ listStyleType: 'none' }}>
               {data.map(item => (
                 <Item key={item.id} item={item} handleChange={handleChange} />

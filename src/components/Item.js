@@ -13,8 +13,11 @@ const Item = ({ item, handleChange }) => {
       const oneDay = 60 * 60 * 24;
       // Checks to see if the number of seconds that have elapsed since
       // the last purchased date is less than one day
-      const isChecked = now - item.lastPurchasedDate.seconds < oneDay;
-      return isChecked;
+      // only display item if lastPurchasedDate field exists
+      if (item.lastPurchasedDate) {
+        const isChecked = now - item.lastPurchasedDate.seconds < oneDay;
+        return isChecked;
+      }
     };
     // check whether item should be checked
     const check = checkDate(item);
@@ -30,7 +33,7 @@ const Item = ({ item, handleChange }) => {
           onChange={e => handleChange(e, item)}
         />
         <span className={className}>
-          {item.name} - next purchase in {item.nextPurchase} days{' '}
+          {item.name} - next purchase in {item.nextPurchase} days
         </span>
       </label>
     </li>

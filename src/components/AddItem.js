@@ -6,7 +6,6 @@ import Modal from './Modal';
 
 const AddItemForm = props => {
   const { shoppingList } = useContext(ListContext);
-  console.log(shoppingList);
   const [showModal, setModalDisplay] = useState(false);
 
   const emptyShoppingItem = {
