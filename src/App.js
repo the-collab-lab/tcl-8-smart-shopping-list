@@ -22,6 +22,7 @@ function App() {
 
   useEffect(() => {
     checkForToken() ? push('/list') : push('/');
+    setToken(localStorage.getItem('userToken'));
   }, [push]);
 
   return (
