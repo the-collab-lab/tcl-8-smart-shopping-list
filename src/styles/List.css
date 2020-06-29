@@ -1,7 +1,13 @@
+.list {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
 .strikeThrough {
   text-decoration: line-through;
 }
 
-.list input{
-  width: 5%
+.list input {
+  width: 5%;
 }

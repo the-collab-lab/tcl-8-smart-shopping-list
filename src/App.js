@@ -9,8 +9,6 @@ import { Navigation } from './components/Navigation';
 
 import ListContextProvider from './context/ListContext';
 
-import GetToken from './lib/token.js';
-
 function App() {
   const [token, setToken] = useState('');
   let history = useHistory();
@@ -30,7 +28,6 @@ function App() {
       <div>
         <header>
           <h1>Shopping List</h1>
-          <p>Token: {token}</p>
         </header>
         <main>
           <Route exact path="/">
