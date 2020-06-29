@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import './App.css';
 import { Route } from 'react-router-dom';
@@ -10,6 +10,7 @@ import { Navigation } from './components/Navigation';
 import ListContextProvider from './context/ListContext';
 
 function App() {
+  const [token, setToken] = useState('');
   let history = useHistory();
   const push = history.push;
 
@@ -19,6 +20,7 @@ function App() {
 
   useEffect(() => {
     checkForToken() ? push('/list') : push('/');
+    setToken(localStorage.getItem('userToken'));
   }, [push]);
 
   return (

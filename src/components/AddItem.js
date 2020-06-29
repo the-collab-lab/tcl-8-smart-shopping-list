@@ -10,7 +10,6 @@ const AddItemForm = props => {
 
   const emptyShoppingItem = {
     name: '',
-    lastPurchasedDate: new Date().toDateString(),
     nextPurchase: 7,
   };
 
@@ -51,6 +50,8 @@ const AddItemForm = props => {
           name: finalEnteredVal,
           nextPurchase: parseInt(enteredValue.nextPurchase, 10),
           token: localStorage.getItem('userToken'),
+          numberOfPurchases: 1,
+          lastPurchasedDate: new Date(),
         });
       }
     }
