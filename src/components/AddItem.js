@@ -90,7 +90,7 @@ const AddItemForm = props => {
               <option value="30">Not soon</option>
             </select>
           </label>
-          <button type="submit" onClick={addItem}>
+          <button className="submit-button" type="submit" onClick={addItem}>
             Add Item
           </button>
         </form>

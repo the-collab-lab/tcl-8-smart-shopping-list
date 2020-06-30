@@ -1,14 +1,12 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { FirestoreCollection, withFirestore } from 'react-firestore';
-import { ListContext } from '../context/ListContext';
 import Item from './Item';
 import Search from './Search';
 import '../styles/List.css';
 
 const List = ({ firestore }) => {
   const token = localStorage.getItem('userToken');
-  const { shoppingList } = useContext(ListContext);
   const [inputText, setInputText] = useState('');
 
   let history = useHistory();
@@ -33,16 +31,8 @@ const List = ({ firestore }) => {
   };
 
   const handleInputChange = e => {
-    if (shoppingList.length) {
-      setInputText(e.target.value);
-    }
+    setInputText(e.target.value);
   };
-
-  //filter items here by comparing input value with the items in the database
-  const unfilteredItems = shoppingList;
-  const items = unfilteredItems.filter(item => {
-    return item.name.toLowerCase().includes(inputText.toLowerCase());
-  });
 
   return (
     <>
@@ -69,13 +59,18 @@ const List = ({ firestore }) => {
                     inputText={inputText}
                   />
                   <ul>
-                    {items.map(item => (
-                      <Item
-                        key={item.id}
-                        item={item}
-                        handleChange={handleChange}
-                      />
-                    ))}
+                    {data.map(item => {
+                      const filteredItem = item.name
+                        .toLowerCase()
+                        .includes(inputText.toLowerCase());
+                      return filteredItem ? (
+                        <Item
+                          key={item.id}
+                          item={item}
+                          handleChange={handleChange}
+                        />
+                      ) : null;
+                    })}
                   </ul>
                 </div>
               )}
