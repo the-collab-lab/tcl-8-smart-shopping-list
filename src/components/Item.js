@@ -28,6 +28,7 @@ const Item = ({ item, handleChange }) => {
     <li>
       <label>
         <input
+          className="item-checkmark"
           type="checkbox"
           checked={checked}
           onChange={e => handleChange(e, item)}
