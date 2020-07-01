@@ -34,6 +34,10 @@ const List = ({ firestore }) => {
     setInputText(e.target.value);
   };
 
+  const handleClearInput = () => {
+    setInputText('');
+  };
+
   return (
     <>
       <FirestoreCollection
@@ -50,12 +54,18 @@ const List = ({ firestore }) => {
                   <p>
                     Press <b>'Add First Item'</b> to get started
                   </p>
-                  <button onClick={handleClick}>Add First Item</button>
+                  <button
+                    className="add-first-item-button"
+                    onClick={handleClick}
+                  >
+                    Add First Item
+                  </button>
                 </>
               ) : (
-                <div>
+                <div className="search-container">
                   <Search
                     handleInputChange={handleInputChange}
+                    handleClearInput={handleClearInput}
                     inputText={inputText}
                   />
                   <ul>

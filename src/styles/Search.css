@@ -1,9 +1,27 @@
-.search {
-  width: 230px;
+.search-input {
+  width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  border: 1px solid #dfe1e5;
+  border-radius: 20px;
   box-sizing: border-box;
+  outline: 0;
+}
+
+.search-input:hover {
+  border-color: rgba(223, 225, 229, 0);
+  box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
+}
+
+.clear-button {
+  position: absolute;
+  color: #65676a;
+  top: 1rem;
+  right: 1rem;
+  border-radius: none;
+  z-index: 2;
+  border: none;
+  height: 30px;
+  cursor: pointer;
+  background: 0 -690px;
 }
