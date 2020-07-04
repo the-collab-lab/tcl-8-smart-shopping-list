@@ -3,6 +3,8 @@ import { useHistory } from 'react-router-dom';
 import { FirestoreCollection, withFirestore } from 'react-firestore';
 import Item from './Item';
 import '../styles/List.css';
+import calculateEstimate from '../lib/estimates'
+import secondsToDays from '../lib/secondsToDays'
 
 const List = ({ firestore }) => {
   const token = localStorage.getItem('userToken');
@@ -15,6 +17,9 @@ const List = ({ firestore }) => {
   };
 
   const handleChange = (e, item) => {
+    const daysInterval = secondsToDays((Date.now()/1000) - item.lastPurchasedDate['seconds'])
+    const estimate = calculateEstimate(item.nextPurchase, daysInterval, item.numberOfPurchases)
+
     const purchased = item.numberOfPurchases;
     // TODO: Need some error handling here
     if (e.target.checked) {
@@ -24,6 +29,7 @@ const List = ({ firestore }) => {
         .update({
           numberOfPurchases: purchased + 1,
           lastPurchasedDate: new Date(),
+          nextPurchase: estimate
         });
     }
   };
