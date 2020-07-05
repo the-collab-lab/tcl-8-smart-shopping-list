@@ -9,14 +9,13 @@ export default ({ handleInputChange, inputText, handleClearInput }) => {
         onChange={handleInputChange}
         value={inputText}
         type="text"
-        placeholder="search your item..."
-        //NOTE: Try to make clear button more accessible
+        placeholder="search for your item..."
       />
-      {inputText.length ? (
+      {inputText.length > 0 && (
         <button className="clear-button" onClick={handleClearInput}>
           X
         </button>
-      ) : null}
+      )}
     </>
   );
 };
