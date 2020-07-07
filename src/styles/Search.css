@@ -1,7 +1,7 @@
 .search-input {
   width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
+  padding: 0.75rem 1.25rem;
+  margin: 0.5rem 0;
   border: 1px solid #dfe1e5;
   border-radius: 20px;
   box-sizing: border-box;
@@ -21,7 +21,7 @@
   border-radius: none;
   z-index: 2;
   border: none;
-  height: 30px;
+  height: 2rem;
   cursor: pointer;
-  background: 0 -690px;
+  background: 0 -23rem;
 }

@@ -4,6 +4,8 @@ import { FirestoreCollection, withFirestore } from 'react-firestore';
 import Item from './Item';
 import Search from './Search';
 import '../styles/List.css';
+import calculateEstimate from '../lib/estimates';
+import secondsToDays from '../lib/secondsToDays';
 
 const List = ({ firestore }) => {
   const token = localStorage.getItem('userToken');
@@ -17,8 +19,18 @@ const List = ({ firestore }) => {
   };
 
   const handleChange = (e, item) => {
+    const daysInterval = secondsToDays(
+      Date.now() / 1000 - item.lastPurchasedDate['seconds'],
+    );
+    const weightedNextPurchaseEstimate = calculateEstimate(
+      item.nextPurchase,
+      daysInterval,
+      item.numberOfPurchases,
+    );
+
     const purchased = item.numberOfPurchases;
-    // TODO: Need some error handling here
+    // TODO: Need some error handling here to prevent user from unchecking and rechecking the box within 24
+    // hours of last checked date
     if (e.target.checked) {
       firestore
         .collection('shoppingList')
@@ -26,6 +38,7 @@ const List = ({ firestore }) => {
         .update({
           numberOfPurchases: purchased + 1,
           lastPurchasedDate: new Date(),
+          nextPurchase: weightedNextPurchaseEstimate,
         });
     }
   };
