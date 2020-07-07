@@ -14,3 +14,15 @@
   display: flex;
   justify-content: space-between;
 }
+
+.welcome-button {
+  width: 30%;
+  background-color: #166174;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: 2px solid;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+}

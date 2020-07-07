@@ -60,7 +60,9 @@ const Welcome = ({ firestore }) => {
       <h2>Welcome to ShoppingList</h2>
       <div className="Welcome-NewList">
         <p>Create a new list: </p>
-        <button onClick={createNewList}>New List</button>
+        <button className="welcome-button" onClick={createNewList}>
+          New List
+        </button>
       </div>
 
       <form className="Welcome-JoinList" onSubmit={handleSubmitToken}>
@@ -73,7 +75,7 @@ const Welcome = ({ firestore }) => {
             value={token}
           />
         </label>
-        <button>Join Existing List</button>
+        <button className="welcome-button">Join Existing List</button>
       </form>
     </div>
   );
