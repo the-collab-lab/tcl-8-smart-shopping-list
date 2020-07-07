@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { FirestoreCollection, withFirestore } from 'react-firestore';
 import Item from './Item';
@@ -6,10 +6,15 @@ import Search from './Search';
 import '../styles/List.css';
 import calculateEstimate from '../lib/estimates';
 import secondsToDays from '../lib/secondsToDays';
+import { ListContext } from '../context/ListContext';
+
 
 const List = ({ firestore }) => {
   const token = localStorage.getItem('userToken');
   const [inputText, setInputText] = useState('');
+  const [categorizedItems, setCategorizedItems] = useState('');
+
+  const { filteredList } = useContext(ListContext);
 
   let history = useHistory();
   const push = history.push;
@@ -51,6 +56,22 @@ const List = ({ firestore }) => {
     setInputText('');
   };
 
+  useEffect(() => {
+    let soonItems = [];
+    let kindOfSoonItems = [];
+    let notSoon = [];
+
+    const list = filteredList.sort(
+      (a, b) => {
+        if (a.nextPurchase === b.nextPurchase) {
+          return a.name.localeCompare(b.name)
+        }
+        return a.nextPurchase > b.nextPurchase ? 1 : -1;
+      })
+    setCategorizedItems(list)
+  })
+
+
   return (
     <>
       <FirestoreCollection
@@ -60,45 +81,45 @@ const List = ({ firestore }) => {
           return isLoading ? (
             <p>loading...</p>
           ) : (
-            <div className="list">
-              {error && <p>{error}</p>}
-              {!data.length ? (
-                <>
-                  <p>
-                    Press <b>'Add First Item'</b> to get started
+              <div className="list">
+                {error && <p>{error}</p>}
+                {!data.length ? (
+                  <>
+                    <p>
+                      Press <b>'Add First Item'</b> to get started
                   </p>
-                  <button
-                    className="add-first-item-button"
-                    onClick={handleClick}
-                  >
-                    Add First Item
+                    <button
+                      className="add-first-item-button"
+                      onClick={handleClick}
+                    >
+                      Add First Item
                   </button>
-                </>
-              ) : (
-                <div className="search-container">
-                  <Search
-                    handleInputChange={handleInputChange}
-                    handleClearInput={handleClearInput}
-                    inputText={inputText}
-                  />
-                  <ul>
-                    {data.map(item => {
-                      const filteredItem = item.name
-                        .toLowerCase()
-                        .includes(inputText.toLowerCase());
-                      return filteredItem ? (
-                        <Item
-                          key={item.id}
-                          item={item}
-                          handleChange={handleChange}
-                        />
-                      ) : null;
-                    })}
-                  </ul>
-                </div>
-              )}
-            </div>
-          );
+                  </>
+                ) : (
+                    <div className="search-container">
+                      <Search
+                        handleInputChange={handleInputChange}
+                        handleClearInput={handleClearInput}
+                        inputText={inputText}
+                      />
+                      <ul>
+                        {data.map(item => {
+                          const filteredItem = item.name
+                            .toLowerCase()
+                            .includes(inputText.toLowerCase());
+                          return filteredItem ? (
+                            <Item
+                              key={item.id}
+                              item={item}
+                              handleChange={handleChange}
+                            />
+                          ) : null;
+                        })}
+                      </ul>
+                    </div>
+                  )}
+              </div>
+            );
         }}
       />
     </>
