@@ -41,6 +41,13 @@ const List = ({ firestore }) => {
     }
   };
 
+  const deleteItem = id => {
+    firestore
+      .collection('shoppingList')
+      .doc(id)
+      .delete();
+  };
+
   return (
     <>
       <FirestoreCollection
@@ -50,7 +57,7 @@ const List = ({ firestore }) => {
           return isLoading ? (
             <p>loading...</p>
           ) : (
-            <div className="list">
+            <>
               {error && <p>{error}</p>}
               {!data.length ? (
                 <>
@@ -60,17 +67,18 @@ const List = ({ firestore }) => {
                   <button onClick={handleClick}>Add First Item</button>
                 </>
               ) : (
-                <ul style={{ listStyleType: 'none' }}>
+                <ul className="list" style={{ listStyleType: 'none' }}>
                   {data.map(item => (
                     <Item
                       key={item.id}
                       item={item}
                       handleChange={handleChange}
+                      deleteItem={deleteItem}
                     />
                   ))}
                 </ul>
               )}
-            </div>
+            </>
           );
         }}
       />

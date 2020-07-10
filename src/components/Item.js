@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/Item.css';
 
-const Item = ({ item, handleChange }) => {
+const Item = ({ item, handleChange, deleteItem }) => {
   const [checked, setChecked] = useState(false);
   const className = checked ? 'completed' : '';
 
@@ -26,16 +26,16 @@ const Item = ({ item, handleChange }) => {
 
   return (
     <li>
-      <label>
-        <input
-          type="checkbox"
-          checked={checked}
-          onChange={e => handleChange(e, item)}
-        />
-        <span className={className}>
-          {item.name} - next purchase in {item.nextPurchase} days
-        </span>
+      <input
+        type="checkbox"
+        checked={checked}
+        onChange={e => handleChange(e, item)}
+        id={item.id}
+      />
+      <label htmlFor={item.id} className={className}>
+        {item.name} - next purchase in {item.nextPurchase} days
       </label>
+      <button onClick={() => deleteItem(item.id)}>X</button>
     </li>
   );
 };
