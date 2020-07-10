@@ -7,7 +7,7 @@ import '../styles/List.css';
 import calculateEstimate from '../lib/estimates';
 import secondsToDays from '../lib/secondsToDays';
 import { ListContext } from '../context/ListContext';
-
+import dayjs from 'dayjs';
 
 const List = ({ firestore }) => {
   const token = localStorage.getItem('userToken');
@@ -56,21 +56,33 @@ const List = ({ firestore }) => {
     setInputText('');
   };
 
-  useEffect(() => {
-    let soonItems = [];
-    let kindOfSoonItems = [];
-    let notSoon = [];
+  // useEffect(() => {
+  const list = filteredList.sort((a, b) => {
+    if (a.nextPurchase === b.nextPurchase) {
+      return a.name.localeCompare(b.name);
+    }
+    return a.nextPurchase > b.nextPurchase ? 1 : -1;
+  });
+  // setCategorizedItems(list)
+  // })
 
-    const list = filteredList.sort(
-      (a, b) => {
-        if (a.nextPurchase === b.nextPurchase) {
-          return a.name.localeCompare(b.name)
-        }
-        return a.nextPurchase > b.nextPurchase ? 1 : -1;
-      })
-    setCategorizedItems(list)
-  })
+  //item is inactive if numberOfPurchases <= 1
+  //item is also inactive if elapsed time(difference between now and lastPurchaseDate) = nextPurchase * 2
+  const inactiveItems = list.filter(item => {
+    let formatedLastPurchaseDate = dayjs.unix(
+      item.lastPurchasedDate['seconds'],
+    );
+    let formatedToday = dayjs();
+    let difference = formatedToday.diff(formatedLastPurchaseDate, 'd');
+    if (
+      item.numberOfPurchases <= 1 ||
+      parseInt(difference) >= item.nextPurchase * 2
+    ) {
+      return item;
+    }
+  });
 
+  console.log('inactive Items:', inactiveItems);
 
   return (
     <>
@@ -81,45 +93,47 @@ const List = ({ firestore }) => {
           return isLoading ? (
             <p>loading...</p>
           ) : (
-              <div className="list">
-                {error && <p>{error}</p>}
-                {!data.length ? (
-                  <>
-                    <p>
-                      Press <b>'Add First Item'</b> to get started
+            <div className="list">
+              {error && <p>{error}</p>}
+              {!data.length ? (
+                <>
+                  <p>
+                    Press <b>'Add First Item'</b> to get started
                   </p>
-                    <button
-                      className="add-first-item-button"
-                      onClick={handleClick}
-                    >
-                      Add First Item
+                  <button
+                    className="add-first-item-button"
+                    onClick={handleClick}
+                  >
+                    Add First Item
                   </button>
-                  </>
-                ) : (
-                    <div className="search-container">
-                      <Search
-                        handleInputChange={handleInputChange}
-                        handleClearInput={handleClearInput}
-                        inputText={inputText}
-                      />
-                      <ul>
-                        {data.map(item => {
-                          const filteredItem = item.name
-                            .toLowerCase()
-                            .includes(inputText.toLowerCase());
-                          return filteredItem ? (
-                            <Item
-                              key={item.id}
-                              item={item}
-                              handleChange={handleChange}
-                            />
-                          ) : null;
-                        })}
-                      </ul>
-                    </div>
-                  )}
-              </div>
-            );
+                </>
+              ) : (
+                <div className="search-container">
+                  <Search
+                    handleInputChange={handleInputChange}
+                    handleClearInput={handleClearInput}
+                    inputText={inputText}
+                  />
+                  <ul>
+                    {data.map(item => {
+                      const filteredItem = item.name
+                        .toLowerCase()
+                        .includes(inputText.toLowerCase());
+                      return (
+                        filteredItem && (
+                          <Item
+                            key={item.id}
+                            item={item}
+                            handleChange={handleChange}
+                          />
+                        )
+                      );
+                    })}
+                  </ul>
+                </div>
+              )}
+            </div>
+          );
         }}
       />
     </>
