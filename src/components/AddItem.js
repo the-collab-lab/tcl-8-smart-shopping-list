@@ -65,11 +65,10 @@ const AddItemForm = props => {
   return (
     <Fragment>
       {showModal && (
-        <Modal
-          setDisplay={setModalDisplay}
-          title="Error"
-          message="The item you've entered already exists"
-        />
+        <Modal setDisplay={setModalDisplay}>
+          <h1>Error</h1>
+          <p>You have already added this item.</p>
+        </Modal>
       )}
       <div className="form">
         <form>
