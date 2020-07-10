@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { FirestoreCollection, withFirestore } from 'react-firestore';
 import Item from './Item';
+import Modal from './Modal';
 import '../styles/List.css';
 import calculateEstimate from '../lib/estimates';
 import secondsToDays from '../lib/secondsToDays';
 
 const List = ({ firestore }) => {
+  const [showModal, setModalDisplay] = useState(false);
+  const [idToDelete, setIdToDelete] = useState();
   const token = localStorage.getItem('userToken');
 
   let history = useHistory();
@@ -41,15 +44,30 @@ const List = ({ firestore }) => {
     }
   };
 
-  const deleteItem = id => {
-    firestore
+  const handleDelete = id => {
+    setIdToDelete(id);
+    setModalDisplay(true);
+  };
+
+  const deleteItem = async () => {
+    await firestore
       .collection('shoppingList')
-      .doc(id)
+      .doc(idToDelete)
       .delete();
+
+    setModalDisplay(false);
+    setIdToDelete();
   };
 
   return (
     <>
+      {showModal && (
+        <Modal setDisplay={setModalDisplay}>
+          <h1>Warning</h1>
+          <p>Are you sure you want to delete this item?</p>
+          <button onClick={() => deleteItem()}>Yes</button>
+        </Modal>
+      )}
       <FirestoreCollection
         path="shoppingList"
         filter={['token', '==', token]}
@@ -73,7 +91,7 @@ const List = ({ firestore }) => {
                       key={item.id}
                       item={item}
                       handleChange={handleChange}
-                      deleteItem={deleteItem}
+                      deleteItem={() => handleDelete(item.id)}
                     />
                   ))}
                 </ul>
