@@ -72,6 +72,7 @@ const AddItemForm = props => {
           <label>
             Item name
             <input
+              className="addItem-input"
               type="text"
               name="name"
               placeholder="Eggs"
@@ -82,6 +83,7 @@ const AddItemForm = props => {
           <label>
             How soon do you expect to buy this again?
             <select
+              className="addItem-select"
               type="text"
               name="nextPurchase"
               value={enteredValue.nextPurchase}

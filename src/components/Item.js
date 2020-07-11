@@ -25,8 +25,9 @@ const Item = ({ item, handleChange, deleteItem }) => {
   }, [item]);
 
   return (
-    <li>
+    <li className="list-item">
       <input
+        className="checkbox"
         type="checkbox"
         checked={checked}
         onChange={e => handleChange(e, item)}
@@ -35,7 +36,9 @@ const Item = ({ item, handleChange, deleteItem }) => {
       <label htmlFor={item.id} className={className}>
         {item.name} - next purchase in {item.nextPurchase} days
       </label>
-      <button onClick={() => deleteItem(item.id)}>X</button>
+      <button className="delete" onClick={() => deleteItem(item.id)}>
+        X
+      </button>
     </li>
   );
 };

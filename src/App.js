@@ -29,7 +29,7 @@ function App() {
         <header>
           <h1>Shopping List</h1>
         </header>
-        <main>
+        <main className="main">
           <Route exact path="/">
             <Welcome />
           </Route>
