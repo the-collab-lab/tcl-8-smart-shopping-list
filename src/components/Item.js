@@ -37,7 +37,7 @@ const Item = ({ item, handleChange, deleteItem }) => {
         {item.name} - next purchase in {item.nextPurchase} days
       </label>
       <button className="delete" onClick={() => deleteItem(item.id)}>
-        X
+        Delete
       </button>
     </li>
   );
