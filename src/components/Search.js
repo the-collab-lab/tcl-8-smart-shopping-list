@@ -3,7 +3,8 @@ import '../styles/Search.css';
 
 export default ({ handleInputChange, inputText, handleClearInput }) => {
   return (
-    <>
+    <div>
+    <label> Search 
       <input
         className="search-input"
         onChange={handleInputChange}
@@ -16,6 +17,7 @@ export default ({ handleInputChange, inputText, handleClearInput }) => {
           X
         </button>
       )}
-    </>
+      </label>
+    </div>
   );
 };

@@ -28,23 +28,23 @@ const Item = ({ item, handleChange, inactiveItems }) => {
     let color = ''
 
     if(item.status === 'inactive'){
-      color = 'red'
+      color = '#D5A021'
     } else {
       if(item.nextPurchase <= 7){
-        color = 'blue'
+        color = '#EDE7D9'
       } else if(item.nextPurchase > 7 && item.nextPurchase < 30) {
-        color = 'gold'
+        color = '#A49694'
       } else if (item.nextPurchase >= 30){
-        color = 'green'
+        color = '#6B8F71'
       }
     }
     return color
   }
 
   return (
-    <li>
+    <li className="list-item" style={{backgroundColor: addNextPurchaseStyling(item)}}>
       <label>
-        <input
+      <input
           className="item-checkmark"
           type="checkbox"
           checked={checked}
@@ -52,7 +52,7 @@ const Item = ({ item, handleChange, inactiveItems }) => {
         />
         <span 
           className={className} 
-          style={{color: addNextPurchaseStyling(item)}}>
+          >
           {item.name} - next purchase in {item.nextPurchase} days
         </span>
       </label>

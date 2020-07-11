@@ -25,7 +25,7 @@ function App() {
 
   return (
     <ListContextProvider>
-      <div>
+      <div className="app">
         <header>
           <h1>Shopping List</h1>
         </header>

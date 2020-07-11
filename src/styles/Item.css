@@ -5,3 +5,10 @@
 .item-checkmark {
   width: 5%;
 }
+
+.list-item{
+  border: 1px solid grey;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  height: 35px;
+}
