@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { FirestoreCollection, withFirestore } from 'react-firestore';
 import Item from './Item';
@@ -70,14 +70,7 @@ const List = ({ firestore }) => {
   };
 
   return (
-    <>
-      {showModal && (
-        <Modal setDisplay={setModalDisplay}>
-          <h1>Warning</h1>
-          <p>Are you sure you want to delete this item?</p>
-          <button onClick={() => deleteItem()}>Yes</button>
-        </Modal>
-      )}
+    <Fragment>
       <FirestoreCollection
         path="shoppingList"
         filter={['token', '==', token]}
@@ -127,7 +120,14 @@ const List = ({ firestore }) => {
           );
         }}
       />
-    </>
+      {showModal && (
+        <Modal setDisplay={setModalDisplay}>
+          <h1>Warning</h1>
+          <p>Are you sure you want to delete this item?</p>
+          <button onClick={() => deleteItem()}>Yes</button>
+        </Modal>
+      )}
+    </Fragment>
   );
 };
 
