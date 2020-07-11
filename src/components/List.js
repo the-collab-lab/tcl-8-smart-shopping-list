@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { FirestoreCollection, withFirestore } from 'react-firestore';
 import Item from './Item';
 import Modal from './Modal';
+import Search from './Search';
 import '../styles/List.css';
 import calculateEstimate from '../lib/estimates';
 import secondsToDays from '../lib/secondsToDays';
@@ -11,6 +12,7 @@ const List = ({ firestore }) => {
   const [showModal, setModalDisplay] = useState(false);
   const [idToDelete, setIdToDelete] = useState();
   const token = localStorage.getItem('userToken');
+  const [inputText, setInputText] = useState('');
 
   let history = useHistory();
   const push = history.push;
@@ -59,6 +61,14 @@ const List = ({ firestore }) => {
     setIdToDelete();
   };
 
+  const handleInputChange = e => {
+    setInputText(e.target.value);
+  };
+
+  const handleClearInput = () => {
+    setInputText('');
+  };
+
   return (
     <>
       {showModal && (
@@ -82,19 +92,36 @@ const List = ({ firestore }) => {
                   <p>
                     Press <b>'Add First Item'</b> to get started
                   </p>
-                  <button onClick={handleClick}>Add First Item</button>
+                  <button
+                    className="add-first-item-button"
+                    onClick={handleClick}
+                  >
+                    Add First Item
+                  </button>
                 </>
               ) : (
-                <ul className="list" style={{ listStyleType: 'none' }}>
-                  {data.map(item => (
-                    <Item
-                      key={item.id}
-                      item={item}
-                      handleChange={handleChange}
-                      deleteItem={() => handleDelete(item.id)}
-                    />
-                  ))}
-                </ul>
+                <div className="search-container">
+                  <Search
+                    handleInputChange={handleInputChange}
+                    handleClearInput={handleClearInput}
+                    inputText={inputText}
+                  />
+                  <ul className="list">
+                    {data.map(item => {
+                      const filteredItem = item.name
+                        .toLowerCase()
+                        .includes(inputText.toLowerCase());
+                      return filteredItem ? (
+                        <Item
+                          key={item.id}
+                          item={item}
+                          handleChange={handleChange}
+                          deleteItem={() => handleDelete(item.id)}
+                        />
+                      ) : null;
+                    })}
+                  </ul>
+                </div>
               )}
             </>
           );

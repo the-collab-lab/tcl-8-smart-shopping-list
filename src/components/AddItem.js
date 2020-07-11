@@ -5,7 +5,8 @@ import { ListContext } from '../context/ListContext';
 import Modal from './Modal';
 
 const AddItemForm = props => {
-  const { shoppingList } = useContext(ListContext);
+  const { filteredList } = useContext(ListContext);
+
   const [showModal, setModalDisplay] = useState(false);
 
   const emptyShoppingItem = {
@@ -23,8 +24,6 @@ const AddItemForm = props => {
   const addItem = e => {
     e.preventDefault();
 
-    const items = shoppingList;
-
     if (enteredValue.name === '') {
       alert('Please enter an item name');
     } else {
@@ -33,9 +32,8 @@ const AddItemForm = props => {
         '',
       ); // removes punctuation
       const finalEnteredVal = removePunctuation.replace(/\s{2,}/g, ''); // removes extra spacing
-      console.log('entered value: ', finalEnteredVal);
 
-      const result = items.filter(item => {
+      const result = filteredList.filter(item => {
         return item.name
           .toLowerCase()
           .replace(/\s{1,}/g, '')
@@ -44,7 +42,6 @@ const AddItemForm = props => {
 
       if (result.length) {
         setModalDisplay(true);
-        console.log('duplicate: modal opens');
       } else {
         firestore.collection('shoppingList').add({
           name: finalEnteredVal,
@@ -95,7 +92,7 @@ const AddItemForm = props => {
               <option value="30">Not soon</option>
             </select>
           </label>
-          <button type="submit" onClick={addItem}>
+          <button className="submit-button" type="submit" onClick={addItem}>
             Add Item
           </button>
         </form>
