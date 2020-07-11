@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/Item.css';
 
-const Item = ({ item, handleChange }) => {
+const Item = ({ item, handleChange, inactiveItems }) => {
   const [checked, setChecked] = useState(false);
   const className = checked ? 'completed' : '';
 
@@ -24,6 +24,23 @@ const Item = ({ item, handleChange }) => {
     setChecked(check);
   }, [item]);
 
+  const addNextPurchaseStyling = (item) => {
+    let color = ''
+
+    if(item.status === 'inactive'){
+      color = 'red'
+    } else {
+      if(item.nextPurchase <= 7){
+        color = 'blue'
+      } else if(item.nextPurchase > 7 && item.nextPurchase < 30) {
+        color = 'gold'
+      } else if (item.nextPurchase >= 30){
+        color = 'green'
+      }
+    }
+    return color
+  }
+
   return (
     <li>
       <label>
@@ -33,7 +50,9 @@ const Item = ({ item, handleChange }) => {
           checked={checked}
           onChange={e => handleChange(e, item)}
         />
-        <span className={className}>
+        <span 
+          className={className} 
+          style={{color: addNextPurchaseStyling(item)}}>
           {item.name} - next purchase in {item.nextPurchase} days
         </span>
       </label>

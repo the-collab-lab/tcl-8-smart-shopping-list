@@ -34,8 +34,6 @@ const List = ({ firestore }) => {
     );
 
     const purchased = item.numberOfPurchases;
-    // TODO: Need some error handling here to prevent user from unchecking and rechecking the box within 24
-    // hours of last checked date
     if (e.target.checked) {
       firestore
         .collection('shoppingList')
@@ -56,19 +54,12 @@ const List = ({ firestore }) => {
     setInputText('');
   };
 
-  // useEffect(() => {
-  const list = filteredList.sort((a, b) => {
-    if (a.nextPurchase === b.nextPurchase) {
-      return a.name.localeCompare(b.name);
-    }
-    return a.nextPurchase > b.nextPurchase ? 1 : -1;
-  });
-  // setCategorizedItems(list)
-  // })
+  //* Created two lists
+  const inactiveList = [];
+  const activeList = [];
 
-  //item is inactive if numberOfPurchases <= 1
-  //item is also inactive if elapsed time(difference between now and lastPurchaseDate) = nextPurchase * 2
-  const inactiveItems = list.filter(item => {
+  //* Used this function to divide active and inactive items
+  filteredList.map(item => {
     let formatedLastPurchaseDate = dayjs.unix(
       item.lastPurchasedDate['seconds'],
     );
@@ -78,11 +69,32 @@ const List = ({ firestore }) => {
       item.numberOfPurchases <= 1 ||
       parseInt(difference) >= item.nextPurchase * 2
     ) {
-      return item;
+      inactiveList.push(item)
+    } else {
+      activeList.push(item)
     }
   });
 
-  console.log('inactive Items:', inactiveItems);
+
+ //* Used this function to sort both the lists
+  const lists = (arr) => {
+    return arr.sort((a, b) => {
+      if (a.nextPurchase === b.nextPurchase) {
+        return a.name.localeCompare(b.name);
+      }
+      return a.nextPurchase > b.nextPurchase ? 1 : -1;
+    });
+  }
+
+  const active = lists(activeList);
+  const inactive = lists(inactiveList);
+
+  //* Added active and inactive status to the items
+  active.map(a => a['status'] = 'active')
+  inactive.map(a => a['status'] = 'inactive')
+
+  //* Concatenated both the arrays
+  const list = [...active,...inactive]
 
   return (
     <>
@@ -115,7 +127,7 @@ const List = ({ firestore }) => {
                     inputText={inputText}
                   />
                   <ul>
-                    {data.map(item => {
+                    {list.map(item => {
                       const filteredItem = item.name
                         .toLowerCase()
                         .includes(inputText.toLowerCase());
