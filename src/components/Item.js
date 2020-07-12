@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/Item.css';
 
-const Item = ({ item, handleChange, inactiveItems }) => {
+const Item = ({ item, handleChange }) => {
   const [checked, setChecked] = useState(false);
   const className = checked ? 'completed' : '';
 

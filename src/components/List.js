@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { FirestoreCollection, withFirestore } from 'react-firestore';
 import Item from './Item';
@@ -12,7 +12,6 @@ import dayjs from 'dayjs';
 const List = ({ firestore }) => {
   const token = localStorage.getItem('userToken');
   const [inputText, setInputText] = useState('');
-  const [categorizedItems, setCategorizedItems] = useState('');
 
   const { filteredList } = useContext(ListContext);
 
@@ -69,32 +68,31 @@ const List = ({ firestore }) => {
       item.numberOfPurchases <= 1 ||
       parseInt(difference) >= item.nextPurchase * 2
     ) {
-      inactiveList.push(item)
+      inactiveList.push(item);
     } else {
-      activeList.push(item)
+      activeList.push(item);
     }
   });
 
-
- //* Used this function to sort both the lists
-  const lists = (arr) => {
+  //* Used this function to sort both the lists
+  const lists = arr => {
     return arr.sort((a, b) => {
       if (a.nextPurchase === b.nextPurchase) {
         return a.name.localeCompare(b.name);
       }
       return a.nextPurchase > b.nextPurchase ? 1 : -1;
     });
-  }
+  };
 
   const active = lists(activeList);
   const inactive = lists(inactiveList);
 
   //* Added active and inactive status to the items
-  active.map(a => a['status'] = 'active')
-  inactive.map(a => a['status'] = 'inactive')
+  active.map(a => (a['status'] = 'active'));
+  inactive.map(a => (a['status'] = 'inactive'));
 
   //* Concatenated both the arrays
-  const list = [...active,...inactive]
+  const list = [...active, ...inactive];
 
   return (
     <>
