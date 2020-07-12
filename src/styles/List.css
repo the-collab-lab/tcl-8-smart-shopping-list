@@ -8,8 +8,7 @@
   text-decoration: line-through;
 }
 
-.list ul {
-  padding: 0 3rem;
+.list {
   list-style: none;
 }
 

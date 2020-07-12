@@ -1,7 +1,7 @@
 import React from 'react';
 import '../styles/Search.css';
 
-export default ({ handleInputChange, inputText, handleClearInput }) => {
+const Search = ({ handleInputChange, inputText, handleClearInput }) => {
   return (
     <>
       <input
@@ -19,3 +19,5 @@ export default ({ handleInputChange, inputText, handleClearInput }) => {
     </>
   );
 };
+
+export default Search;

@@ -61,12 +61,18 @@ const AddItemForm = props => {
 
   return (
     <Fragment>
-      {showModal && <Modal setDisplay={setModalDisplay} />}
+      {showModal && (
+        <Modal setDisplay={setModalDisplay}>
+          <h1>Error</h1>
+          <p>You have already added this item.</p>
+        </Modal>
+      )}
       <div className="form">
         <form>
           <label>
             Item name
             <input
+              className="addItem-input"
               type="text"
               name="name"
               placeholder="Eggs"
@@ -77,6 +83,7 @@ const AddItemForm = props => {
           <label>
             How soon do you expect to buy this again?
             <select
+              className="addItem-select"
               type="text"
               name="nextPurchase"
               value={enteredValue.nextPurchase}
