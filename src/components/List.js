@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { FirestoreCollection, withFirestore } from 'react-firestore';
 import Item from './Item';
@@ -12,6 +12,7 @@ import dayjs from 'dayjs';
 const List = ({ firestore }) => {
   const token = localStorage.getItem('userToken');
   const [inputText, setInputText] = useState('');
+  const [categorizedList, setCategorizedList] = useState();
 
   const { filteredList } = useContext(ListContext);
 
@@ -58,16 +59,13 @@ const List = ({ firestore }) => {
   const activeList = [];
 
   //* Used this function to divide active and inactive items
-  filteredList.map(item => {
-    let formatedLastPurchaseDate = dayjs.unix(
+  filteredList.forEach(item => {
+    let formattedLastPurchaseDate = dayjs.unix(
       item.lastPurchasedDate['seconds'],
     );
-    let formatedToday = dayjs();
-    let difference = formatedToday.diff(formatedLastPurchaseDate, 'd');
-    if (
-      item.numberOfPurchases <= 1 ||
-      parseInt(difference) >= item.nextPurchase * 2
-    ) {
+    let formattedToday = dayjs();
+    let difference = formattedToday.diff(formattedLastPurchaseDate, 'd');
+    if (item.numberOfPurchases <= 1 || +difference >= item.nextPurchase * 2) {
       inactiveList.push(item);
     } else {
       activeList.push(item);
