@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { FirestoreCollection, withFirestore } from 'react-firestore';
 import Item from './Item';
+import Modal from './Modal';
 import Search from './Search';
 import '../styles/List.css';
 import calculateEstimate from '../lib/estimates';
@@ -9,6 +10,8 @@ import secondsToDays from '../lib/secondsToDays';
 import dayjs from 'dayjs';
 
 const List = ({ firestore }) => {
+  const [showModal, setModalDisplay] = useState(false);
+  const [idToDelete, setIdToDelete] = useState();
   const token = localStorage.getItem('userToken');
   const [inputText, setInputText] = useState('');
 
@@ -42,6 +45,21 @@ const List = ({ firestore }) => {
     }
   };
 
+  const handleDelete = id => {
+    setIdToDelete(id);
+    setModalDisplay(true);
+  };
+
+  const deleteItem = async () => {
+    await firestore
+      .collection('shoppingList')
+      .doc(idToDelete)
+      .delete();
+
+    setModalDisplay(false);
+    setIdToDelete();
+  };
+
   const handleInputChange = e => {
     setInputText(e.target.value);
   };
@@ -51,7 +69,7 @@ const List = ({ firestore }) => {
   };
 
   return (
-    <>
+    <Fragment>
       <FirestoreCollection
         path="shoppingList"
         filter={['token', '==', token]}
@@ -105,7 +123,7 @@ const List = ({ firestore }) => {
           return isLoading ? (
             <p>loading...</p>
           ) : (
-            <div className="list">
+            <>
               {error && <p>{error}</p>}
               {!data.length ? (
                 <>
@@ -126,7 +144,7 @@ const List = ({ firestore }) => {
                     handleClearInput={handleClearInput}
                     inputText={inputText}
                   />
-                  <ul>
+                  <ul className={'ul-items'}>
                     {sortedList.length > 0 ? (
                       sortedList.map(item => {
                         const filteredItem = item.name
@@ -138,6 +156,7 @@ const List = ({ firestore }) => {
                               key={item.id}
                               item={item}
                               handleChange={handleChange}
+                              deleteItem={() => handleDelete(item.id)}
                             />
                           )
                         );
@@ -148,11 +167,18 @@ const List = ({ firestore }) => {
                   </ul>
                 </div>
               )}
-            </div>
+            </>
           );
         }}
       />
-    </>
+      {showModal && (
+        <Modal setDisplay={setModalDisplay}>
+          <h1>Warning</h1>
+          <p>Are you sure you want to delete this item?</p>
+          <button onClick={() => deleteItem()}>Yes</button>
+        </Modal>
+      )}
+    </Fragment>
   );
 };
 

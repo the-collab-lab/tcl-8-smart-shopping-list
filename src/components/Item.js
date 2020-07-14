@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/Item.css';
 
-const Item = ({ item, handleChange }) => {
+const Item = ({ item, handleChange, deleteItem }) => {
   const [checked, setChecked] = useState(false);
   const className = checked ? 'completed' : '';
 
@@ -42,21 +42,20 @@ const Item = ({ item, handleChange }) => {
   };
 
   return (
-    <li
-      className={`list-item ${addNextPurchaseStyling(item)}`}
-      // style={{ backgroundColor: addNextPurchaseStyling(item) }}
-    >
-      <label>
-        <input
-          className="item-checkmark"
-          type="checkbox"
-          checked={checked}
-          onChange={e => handleChange(e, item)}
-        />
-        <span className={className}>
-          {item.name} - next purchase in {item.nextPurchase} days
-        </span>
+    <li className={`list-item ${addNextPurchaseStyling(item)}`}>
+      <input
+        className="checkbox"
+        type="checkbox"
+        checked={checked}
+        onChange={e => handleChange(e, item)}
+        id={item.id}
+      />
+      <label htmlFor={item.id} className={className}>
+        {item.name} - next purchase in {item.nextPurchase} days
       </label>
+      <button className="delete" onClick={() => deleteItem(item.id)}>
+        Delete
+      </button>
     </li>
   );
 };

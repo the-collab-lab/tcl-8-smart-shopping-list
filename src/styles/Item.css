@@ -2,8 +2,16 @@
   text-decoration: line-through;
 }
 
-.item-checkmark {
-  width: 5%;
+.list-item {
+  margin: 0.5rem;
+}
+
+.checkbox {
+  margin-right: 1rem;
+}
+
+.delete {
+  margin-left: 1rem;
 }
 
 .list-item {

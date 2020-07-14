@@ -9,8 +9,8 @@
   font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
-input,
-select {
+.addItem-input,
+.addItem-select {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
