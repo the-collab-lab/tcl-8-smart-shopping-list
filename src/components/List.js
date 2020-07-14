@@ -110,6 +110,8 @@ const List = ({ firestore }) => {
                           item={item}
                           handleChange={handleChange}
                           deleteItem={() => handleDelete(item.id)}
+                          showModal={showModal}
+                          setModalDisplay={setModalDisplay}
                         />
                       ) : null;
                     })}
