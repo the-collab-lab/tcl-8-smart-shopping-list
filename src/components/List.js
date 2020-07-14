@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { FirestoreCollection, withFirestore } from 'react-firestore';
 import Item from './Item';
@@ -6,15 +6,11 @@ import Search from './Search';
 import '../styles/List.css';
 import calculateEstimate from '../lib/estimates';
 import secondsToDays from '../lib/secondsToDays';
-import { ListContext } from '../context/ListContext';
 import dayjs from 'dayjs';
 
 const List = ({ firestore }) => {
   const token = localStorage.getItem('userToken');
   const [inputText, setInputText] = useState('');
-  const [categorizedList, setCategorizedList] = useState();
-
-  const { filteredList } = useContext(ListContext);
 
   let history = useHistory();
   const push = history.push;
@@ -54,50 +50,58 @@ const List = ({ firestore }) => {
     setInputText('');
   };
 
-  //* Created two lists
-  const inactiveList = [];
-  const activeList = [];
-
-  //* Used this function to divide active and inactive items
-  filteredList.forEach(item => {
-    let formattedLastPurchaseDate = dayjs.unix(
-      item.lastPurchasedDate['seconds'],
-    );
-    let formattedToday = dayjs();
-    let difference = formattedToday.diff(formattedLastPurchaseDate, 'd');
-    if (item.numberOfPurchases <= 1 || +difference >= item.nextPurchase * 2) {
-      inactiveList.push(item);
-    } else {
-      activeList.push(item);
-    }
-  });
-
-  //* Used this function to sort both the lists
-  const lists = arr => {
-    return arr.sort((a, b) => {
-      if (a.nextPurchase === b.nextPurchase) {
-        return a.name.localeCompare(b.name);
-      }
-      return a.nextPurchase > b.nextPurchase ? 1 : -1;
-    });
-  };
-
-  const active = lists(activeList);
-  const inactive = lists(inactiveList);
-
-  //* Added active and inactive status to the items
-  active.map(a => (a['status'] = 'active'));
-  inactive.map(a => (a['status'] = 'inactive'));
-
-  //* Concatenated both the arrays
-  const list = [...active, ...inactive];
-
   return (
     <>
       <FirestoreCollection
         path="shoppingList"
         filter={['token', '==', token]}
         render={({ isLoading, data, error }) => {
+          const sortData = () => {
+            //* Created two lists
+            const inactiveList = [];
+            const activeList = [];
+
+            //* Used this function to divide active and inactive items
+            data.forEach(item => {
+              let formattedLastPurchaseDate = dayjs.unix(
+                item.lastPurchasedDate['seconds'],
+              );
+              let formattedToday = dayjs();
+              let difference = formattedToday.diff(
+                formattedLastPurchaseDate,
+                'd',
+              );
+              if (
+                item.numberOfPurchases <= 1 ||
+                +difference >= item.nextPurchase * 2
+              ) {
+                inactiveList.push(item);
+              } else {
+                activeList.push(item);
+              }
+            });
+
+            //* Used this function to sort both the lists
+            const lists = arr => {
+              return arr.sort((a, b) => {
+                if (a.nextPurchase === b.nextPurchase) {
+                  return a.name.localeCompare(b.name);
+                }
+                return a.nextPurchase > b.nextPurchase ? 1 : -1;
+              });
+            };
+
+            const active = lists(activeList);
+            const inactive = lists(inactiveList);
+
+            //* Added active and inactive status to the items
+            active.forEach(a => (a['status'] = 'active'));
+            inactive.forEach(a => (a['status'] = 'inactive'));
+
+            //* Concatenated both the arrays
+            return [...active, ...inactive];
+          };
+          const sortedList = sortData(data);
           return isLoading ? (
             <p>loading...</p>
           ) : (
@@ -123,20 +127,24 @@ const List = ({ firestore }) => {
                     inputText={inputText}
                   />
                   <ul>
-                    {list.map(item => {
-                      const filteredItem = item.name
-                        .toLowerCase()
-                        .includes(inputText.toLowerCase());
-                      return (
-                        filteredItem && (
-                          <Item
-                            key={item.id}
-                            item={item}
-                            handleChange={handleChange}
-                          />
-                        )
-                      );
-                    })}
+                    {sortedList.length > 0 ? (
+                      sortedList.map(item => {
+                        const filteredItem = item.name
+                          .toLowerCase()
+                          .includes(inputText.toLowerCase());
+                        return (
+                          filteredItem && (
+                            <Item
+                              key={item.id}
+                              item={item}
+                              handleChange={handleChange}
+                            />
+                          )
+                        );
+                      })
+                    ) : (
+                      <p>List is Currently Empty</p>
+                    )}
                   </ul>
                 </div>
               )}

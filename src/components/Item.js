@@ -25,26 +25,26 @@ const Item = ({ item, handleChange }) => {
   }, [item]);
 
   const addNextPurchaseStyling = item => {
-    let color = '';
+    let className = '';
 
     if (item.status === 'inactive') {
-      color = '#747d8c';
+      className = 'inactive-color';
     } else {
       if (item.nextPurchase <= 7) {
-        color = '#eb2f06';
+        className = 'soon-color';
       } else if (item.nextPurchase > 7 && item.nextPurchase < 30) {
-        color = '#eccc68';
+        className = 'kind-of-soon-color';
       } else if (item.nextPurchase >= 30) {
-        color = '#2ed573';
+        className = 'not-soon-color';
       }
     }
-    return color;
+    return className;
   };
 
   return (
     <li
-      className="list-item"
-      style={{ backgroundColor: addNextPurchaseStyling(item) }}
+      className={`list-item ${addNextPurchaseStyling(item)}`}
+      // style={{ backgroundColor: addNextPurchaseStyling(item) }}
     >
       <label>
         <input
