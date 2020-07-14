@@ -3,17 +3,18 @@ import Modal from './Modal.js';
 import '../styles/Item.css';
 import dayjs from 'dayjs';
 
-const Item = ({
-  item,
-  handleChange,
-  deleteItem,
-  showModal,
-  setModalDisplay,
-}) => {
+const Item = ({ item, handleChange, deleteItem }) => {
   const [checked, setChecked] = useState(false);
+  const [showItemInfo, setShowItemInfo] = useState(false);
   const className = checked ? 'completed' : '';
-  const today = dayjs().format('d');
-  const estimatedNextPurchaseDate = +today + item.nextPurchase;
+
+  // USE IF NEED DATE FOR NEXT PURCHASE DATE
+  // const today = dayjs().format('d');
+  // const estimatedNextPurchaseDate = +today + item.nextPurchase;
+
+  const lastPurchasedDate = dayjs
+    .unix(item.lastPurchasedDate['seconds'])
+    .format('M-DD-YYYY');
 
   useEffect(() => {
     const checkDate = () => {
@@ -34,10 +35,14 @@ const Item = ({
     setChecked(check);
   }, [item]);
 
+  const handleModalChange = () => {
+    setShowItemInfo(true);
+  };
+
   return (
     <>
       <li className="list-item">
-        <label htmlFor={item.id} onClick={() => console.log('here')}>
+        <label htmlFor={item.id}>
           <input
             className="checkbox"
             type="checkbox"
@@ -47,7 +52,7 @@ const Item = ({
           />
         </label>
 
-        <span className={className} onClick={() => setModalDisplay(true)}>
+        <span className={className} onClick={handleModalChange}>
           {item.name} - next purchase in {item.nextPurchase} days
         </span>
 
@@ -55,13 +60,13 @@ const Item = ({
           Delete
         </button>
       </li>
-      {showModal && (
-        <Modal setDisplay={setModalDisplay}>
+      {showItemInfo && (
+        <Modal setDisplay={setShowItemInfo}>
           <h1>{item.name}</h1>
           <ul>
-            <li>{item.nextPurchase}</li>
-            <li>{item.lastPurchaseDate}</li>
-            <li>{estimatedNextPurchaseDate} days until next purchase</li>
+            <li>Last purchase on {lastPurchasedDate}</li>
+            <li>Next purchase in {item.nextPurchase} days</li>
+            <li>Number of Purchases: {item.numberOfPurchases}</li>
           </ul>
         </Modal>
       )}
