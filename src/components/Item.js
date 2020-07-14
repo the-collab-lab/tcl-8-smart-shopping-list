@@ -39,9 +39,26 @@ const Item = ({ item, handleChange, deleteItem }) => {
     setShowItemInfo(true);
   };
 
+  const addNextPurchaseStyling = item => {
+    let className = '';
+
+    if (item.status === 'inactive') {
+      className = 'inactive-color';
+    } else {
+      if (item.nextPurchase <= 7) {
+        className = 'soon-color';
+      } else if (item.nextPurchase > 7 && item.nextPurchase < 30) {
+        className = 'kind-of-soon-color';
+      } else if (item.nextPurchase >= 30) {
+        className = 'not-soon-color';
+      }
+    }
+    return className;
+  };
+
   return (
     <>
-      <li className="list-item">
+      <li className={`list-item ${addNextPurchaseStyling(item)}`}>
         <label htmlFor={item.id}>
           <input
             className="checkbox"
