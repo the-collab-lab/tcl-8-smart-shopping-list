@@ -53,7 +53,7 @@ const Item = ({ item, handleChange, deleteItem }) => {
         </label>
 
         <span className={className} onClick={handleModalChange}>
-          {item.name} - next purchase in {item.nextPurchase} days
+          {item.name}
         </span>
 
         <button className="delete" onClick={() => deleteItem(item.id)}>
