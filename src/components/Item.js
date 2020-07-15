@@ -14,7 +14,7 @@ const Item = ({ item, handleChange, deleteItem }) => {
 
   const lastPurchasedDate = dayjs
     .unix(item.lastPurchasedDate['seconds'])
-    .format('M-DD-YYYY');
+    .format('M/DD/YYYY');
 
   useEffect(() => {
     const checkDate = () => {
@@ -62,11 +62,15 @@ const Item = ({ item, handleChange, deleteItem }) => {
       </li>
       {showItemInfo && (
         <Modal setDisplay={setShowItemInfo}>
-          <h1>{item.name}</h1>
+          <h2>{item.name}</h2>
           <ul>
-            <li>Last purchase on {lastPurchasedDate}</li>
+            <li>Last purchased on {lastPurchasedDate}</li>
             <li>Next purchase in {item.nextPurchase} days</li>
-            <li>Number of Purchases: {item.numberOfPurchases}</li>
+            <li>
+              {item.numberOfPurchases > 1
+                ? `Previously purchased ${item.numberOfPurchases} times`
+                : `Previously purchased once`}
+            </li>
           </ul>
         </Modal>
       )}
