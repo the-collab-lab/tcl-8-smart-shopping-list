@@ -7,6 +7,7 @@ import Search from './Search';
 import '../styles/List.css';
 import calculateEstimate from '../lib/estimates';
 import secondsToDays from '../lib/secondsToDays';
+import dayjs from 'dayjs';
 
 const List = ({ firestore }) => {
   const [showModal, setModalDisplay] = useState(false);
@@ -32,8 +33,6 @@ const List = ({ firestore }) => {
     );
 
     const purchased = item.numberOfPurchases;
-    // TODO: Need some error handling here to prevent user from unchecking and rechecking the box within 24
-    // hours of last checked date
     if (e.target.checked) {
       firestore
         .collection('shoppingList')
@@ -75,6 +74,52 @@ const List = ({ firestore }) => {
         path="shoppingList"
         filter={['token', '==', token]}
         render={({ isLoading, data, error }) => {
+          const sortData = () => {
+            //* Created two lists
+            const inactiveList = [];
+            const activeList = [];
+
+            //* Used this function to divide active and inactive items
+            data.forEach(item => {
+              let formattedLastPurchaseDate = dayjs.unix(
+                item.lastPurchasedDate['seconds'],
+              );
+              let formattedToday = dayjs();
+              let difference = formattedToday.diff(
+                formattedLastPurchaseDate,
+                'd',
+              );
+              if (
+                item.numberOfPurchases <= 1 ||
+                +difference >= item.nextPurchase * 2
+              ) {
+                inactiveList.push(item);
+              } else {
+                activeList.push(item);
+              }
+            });
+
+            //* Used this function to sort both the lists
+            const lists = arr => {
+              return arr.sort((a, b) => {
+                if (a.nextPurchase === b.nextPurchase) {
+                  return a.name.localeCompare(b.name);
+                }
+                return a.nextPurchase > b.nextPurchase ? 1 : -1;
+              });
+            };
+
+            const active = lists(activeList);
+            const inactive = lists(inactiveList);
+
+            //* Added active and inactive status to the items
+            active.forEach(a => (a['status'] = 'active'));
+            inactive.forEach(a => (a['status'] = 'inactive'));
+
+            //* Concatenated both the arrays
+            return [...active, ...inactive];
+          };
+          const sortedList = sortData(data);
           return isLoading ? (
             <p>loading...</p>
           ) : (
@@ -99,22 +144,26 @@ const List = ({ firestore }) => {
                     handleClearInput={handleClearInput}
                     inputText={inputText}
                   />
-                  <ul className="list">
-                    {data.map(item => {
-                      const filteredItem = item.name
-                        .toLowerCase()
-                        .includes(inputText.toLowerCase());
-                      return filteredItem ? (
-                        <Item
-                          key={item.id}
-                          item={item}
-                          handleChange={handleChange}
-                          deleteItem={() => handleDelete(item.id)}
-                          showModal={showModal}
-                          setModalDisplay={setModalDisplay}
-                        />
-                      ) : null;
-                    })}
+                  <ul className={'ul-items'}>
+                    {sortedList.length > 0 ? (
+                      sortedList.map(item => {
+                        const filteredItem = item.name
+                          .toLowerCase()
+                          .includes(inputText.toLowerCase());
+                        return (
+                          filteredItem && (
+                            <Item
+                              key={item.id}
+                              item={item}
+                              handleChange={handleChange}
+                              deleteItem={() => handleDelete(item.id)}
+                            />
+                          )
+                        );
+                      })
+                    ) : (
+                      <p>List is Currently Empty</p>
+                    )}
                   </ul>
                 </div>
               )}
