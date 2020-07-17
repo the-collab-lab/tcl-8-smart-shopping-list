@@ -25,18 +25,18 @@ function App() {
 
   return (
     <ListContextProvider>
-      <div>
-        <header>
-          <h1>Shopping List</h1>
-        </header>
-        <main className="main">
-          <Route exact path="/">
-            <Welcome />
-          </Route>
-          <Route path="/list" component={List} />
-          <Route path="/addItem" component={AddItem} />
-        </main>
-        <Navigation />
+        <div className="bg-white mx-auto max-w-lg shadow-lg rounded-lg overflow-hidden" style={{border: '2px solid red'}}>
+          <header>
+            <h1>Shopping List</h1>
+          </header>
+          <main className="main">
+            <Route exact path="/">
+              <Welcome />
+            </Route>
+            <Route path="/list" component={List} />
+            <Route path="/addItem" component={AddItem} />
+          </main>
+          <Navigation />
       </div>
     </ListContextProvider>
   );
