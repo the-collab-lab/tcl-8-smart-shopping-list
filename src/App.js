@@ -25,18 +25,19 @@ function App() {
 
   return (
     <ListContextProvider>
-        <div className="bg-white mx-auto max-w-lg shadow-lg rounded-lg overflow-hidden" style={{border: '2px solid red'}}>
-          <header>
-            <h1>Shopping List</h1>
-          </header>
-          <main className="main">
-            <Route exact path="/">
-              <Welcome />
-            </Route>
-            <Route path="/list" component={List} />
-            <Route path="/addItem" component={AddItem} />
-          </main>
-          <Navigation />
+      <div className="flex-row max-w-4xl mx-auto bg-teal-200 bg-opacity-25 shadow-2xl relative h-screen">
+        <header className="p-10">
+          <h1 className="text-5xl text-center text-teal-800">Smart Shopping</h1>
+        </header>
+        <main>
+          <Route exact path="/">
+            <Welcome />
+          </Route>
+          <Route path="/list" component={List} />
+          <Route path="/addItem" component={AddItem} />
+        </main>
+
+        {token && <Navigation />}
       </div>
     </ListContextProvider>
   );
