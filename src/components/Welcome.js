@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { withFirestore } from 'react-firestore';
 import GetToken from '../lib/token.js';
-import Modal from './Modal';
-
 
 const Welcome = ({ firestore }) => {
   const [token, setToken] = useState('');
