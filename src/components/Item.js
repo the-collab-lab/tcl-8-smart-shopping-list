@@ -76,21 +76,25 @@ const Item = ({ item, handleChange, deleteItem }) => {
         <button className="delete" onClick={() => deleteItem(item.id)}>
           Delete
         </button>
+        {showItemInfo && (
+          <Modal setDisplay={setShowItemInfo}>
+            <h2>{item.name}</h2>
+            <ul>
+              <li>Last purchased on {lastPurchasedDate}</li>
+              <li>
+                {item.nextPurchase > 1
+                  ? `Next purchase in ${item.nextPurchase} days`
+                  : `Next purchase in ${item.nextPurchase} day`}
+              </li>
+              <li>
+                {item.numberOfPurchases > 1
+                  ? `Previously purchased ${item.numberOfPurchases} times`
+                  : `Previously purchased once`}
+              </li>
+            </ul>
+          </Modal>
+        )}
       </li>
-      {showItemInfo && (
-        <Modal setDisplay={setShowItemInfo}>
-          <h2>{item.name}</h2>
-          <ul>
-            <li>Last purchased on {lastPurchasedDate}</li>
-            <li>Next purchase in {item.nextPurchase} days</li>
-            <li>
-              {item.numberOfPurchases > 1
-                ? `Previously purchased ${item.numberOfPurchases} times`
-                : `Previously purchased once`}
-            </li>
-          </ul>
-        </Modal>
-      )}
     </>
   );
 };

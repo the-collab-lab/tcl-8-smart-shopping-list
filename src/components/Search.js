@@ -3,7 +3,7 @@ import '../styles/Search.css';
 
 const Search = ({ handleInputChange, inputText, handleClearInput }) => {
   return (
-    <div>
+    <>
       <input
         className="search-input"
         onChange={handleInputChange}
@@ -17,7 +17,7 @@ const Search = ({ handleInputChange, inputText, handleClearInput }) => {
           X
         </button>
       )}
-    </div>
+    </>
   );
 };
 
