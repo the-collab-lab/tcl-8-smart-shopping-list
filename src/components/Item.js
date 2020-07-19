@@ -1,9 +1,20 @@
 import React, { useState, useEffect } from 'react';
+import Modal from './Modal.js';
 import '../styles/Item.css';
+import dayjs from 'dayjs';
 
 const Item = ({ item, handleChange, deleteItem }) => {
   const [checked, setChecked] = useState(false);
+  const [showItemInfo, setShowItemInfo] = useState(false);
   const className = checked ? 'completed' : '';
+
+  // USE IF NEED DATE FOR NEXT PURCHASE DATE
+  // const today = dayjs().format('d');
+  // const estimatedNextPurchaseDate = +today + item.nextPurchase;
+
+  const lastPurchasedDate = dayjs
+    .unix(item.lastPurchasedDate['seconds'])
+    .format('M/DD/YYYY');
 
   useEffect(() => {
     const checkDate = () => {
@@ -24,6 +35,10 @@ const Item = ({ item, handleChange, deleteItem }) => {
     setChecked(check);
   }, [item]);
 
+  const handleModalChange = () => {
+    setShowItemInfo(true);
+  };
+
   const addNextPurchaseStyling = item => {
     let className = '';
 
@@ -42,21 +57,45 @@ const Item = ({ item, handleChange, deleteItem }) => {
   };
 
   return (
-    <li className={`list-item ${addNextPurchaseStyling(item)}`}>
-      <input
-        className="checkbox"
-        type="checkbox"
-        checked={checked}
-        onChange={e => handleChange(e, item)}
-        id={item.id}
-      />
-      <label htmlFor={item.id} className={className}>
-        {item.name} - next purchase in {item.nextPurchase} days
-      </label>
-      <button className="delete" onClick={() => deleteItem(item.id)}>
-        Delete
-      </button>
-    </li>
+    <>
+      <li className={`list-item ${addNextPurchaseStyling(item)}`}>
+        <label htmlFor={item.id}>
+          <input
+            className="checkbox"
+            type="checkbox"
+            checked={checked}
+            onChange={e => handleChange(e, item)}
+            id={item.id}
+          />
+        </label>
+
+        <span className={className} onClick={handleModalChange}>
+          {item.name}
+        </span>
+
+        <button className="delete" onClick={() => deleteItem(item.id)}>
+          Delete
+        </button>
+        {showItemInfo && (
+          <Modal setDisplay={setShowItemInfo}>
+            <h2>{item.name}</h2>
+            <ul>
+              <li>Last purchased on {lastPurchasedDate}</li>
+              <li>
+                {item.nextPurchase > 1
+                  ? `Next purchase in ${item.nextPurchase} days`
+                  : `Next purchase in ${item.nextPurchase} day`}
+              </li>
+              <li>
+                {item.numberOfPurchases > 1
+                  ? `Previously purchased ${item.numberOfPurchases} times`
+                  : `Previously purchased once`}
+              </li>
+            </ul>
+          </Modal>
+        )}
+      </li>
+    </>
   );
 };
 
