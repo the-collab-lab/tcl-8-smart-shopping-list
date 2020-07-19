@@ -126,19 +126,24 @@ const List = ({ firestore }) => {
             <>
               {error && <p>{error}</p>}
               {!data.length ? (
-                <>
-                  <p>
+                <div className="text-center">
+                  <p className="mb-8">
                     Press <b>'Add First Item'</b> to get started
                   </p>
                   <button
-                    className="add-first-item-button"
+                    className="bg-transparent 
+                    hover:bg-teal-500 text-teal-700 
+                    font-semibold hover:text-white 
+                    py-2 px-4 border border-teal-500 
+                    hover:border-transparent rounded
+                    block sm:inline"
                     onClick={handleClick}
                   >
                     Add First Item
                   </button>
-                </>
+                </div>
               ) : (
-                <div className="search-container">
+                <div className="w-full max-w-md mx-auto p-5">
                   <Search
                     handleInputChange={handleInputChange}
                     handleClearInput={handleClearInput}

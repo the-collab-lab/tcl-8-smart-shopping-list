@@ -25,7 +25,13 @@ function App() {
 
   return (
     <ListContextProvider>
-      <div className="flex-row max-w-4xl mx-auto bg-teal-200 bg-opacity-25 shadow-2xl relative h-screen">
+      <div className="
+          border-b-8 border-teal-600 
+          flex-row max-w-4xl mx-auto 
+          bg-gray-100
+          shadow-2xl 
+          relative h-screen"
+      >
         <header className="p-10">
           <h1 className="text-5xl text-center text-teal-800">Smart Shopping</h1>
         </header>
