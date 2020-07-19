@@ -143,13 +143,13 @@ const List = ({ firestore }) => {
                   </button>
                 </div>
               ) : (
-                <div className="w-full max-w-md mx-auto p-5">
+                <div className="md:max-w-lg md:mx-auto p-5 ">
                   <Search
                     handleInputChange={handleInputChange}
                     handleClearInput={handleClearInput}
                     inputText={inputText}
                   />
-                  <ul className={'ul-items'}>
+                  <ul>
                     {sortedList.length > 0 ? (
                       sortedList.map(item => {
                         const filteredItem = item.name
