@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/Item.css';
-import close from '../assets/svg/close.svg'
 
 const Item = ({ item, handleChange, deleteItem }) => {
   const [checked, setChecked] = useState(false);
@@ -43,12 +42,12 @@ const Item = ({ item, handleChange, deleteItem }) => {
   };
 
   return (
-    <li className={`bg-transparent 
-        hover:bg-teal-500 text-teal-700 
-        font-semibold hover:text-white 
-        py-2 px-4 border border-teal-500 
-        hover:border-transparent rounded-lg
-        block  ${addNextPurchaseStyling(item)}`}>
+    <li className={`list-item  
+     text-teal-700 
+    font-semibold 
+    py-2 px-4 border border-teal-500 
+    hover:border-transparent rounded-lg
+    block  ${addNextPurchaseStyling(item)}`}>
       <input
         className="checkbox"
         type="checkbox"

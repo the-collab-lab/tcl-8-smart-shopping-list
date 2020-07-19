@@ -149,7 +149,7 @@ const List = ({ firestore }) => {
                     handleClearInput={handleClearInput}
                     inputText={inputText}
                   />
-                  <ul>
+                  <ul className={'ul-items'}>
                     {sortedList.length > 0 ? (
                       sortedList.map(item => {
                         const filteredItem = item.name
