@@ -25,7 +25,8 @@ function App() {
 
   return (
     <ListContextProvider>
-      <div className="
+      <div
+        className="
           border-b-8 border-teal-600 
           flex-row max-w-4xl mx-auto 
           bg-gray-100
