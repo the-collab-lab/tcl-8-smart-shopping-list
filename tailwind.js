@@ -15,11 +15,12 @@ module.exports = {
       transparent: 'transparent',
       current: 'currentColor',
       // theme colors
-      gunmetal: '#292f36',
-      turquoise: '#4ECDC4',
+      primary: '#FF6B6B',
+      secondary: '#4ECDC4',
+      accent: '#FFE66D',
       cream: '#F7FFF7',
-      peach: '#FF6B6B',
-      eggyolk: '#FFE66D',
+      darkgray: '#292f36',
+
       black: '#000',
       white: '#fff',
 
