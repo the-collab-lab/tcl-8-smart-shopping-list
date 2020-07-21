@@ -3,9 +3,13 @@ import '../styles/Search.css';
 
 const Search = ({ handleInputChange, inputText, handleClearInput }) => {
   return (
-    <>
+    <div>
       <input
-        className="search-input"
+        className="w-full bg-transparent text-teal-700 
+                    font-semibold 
+        py-2 px-4 border border-teal-500 
+        rounded-full
+            block focus mb-8"
         onChange={handleInputChange}
         value={inputText}
         type="text"
@@ -17,7 +21,7 @@ const Search = ({ handleInputChange, inputText, handleClearInput }) => {
           X
         </button>
       )}
-    </>
+    </div>
   );
 };
 

@@ -1,0 +1,6 @@
+/* base injects base styles including Normalize.css */
+@tailwind base;
+/* injects any component classes registered by plugins in the config file */
+@tailwind components;
+/* injects any utility classes that are generated from the config file */
+@tailwind utilities;

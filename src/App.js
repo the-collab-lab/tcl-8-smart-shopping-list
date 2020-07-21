@@ -25,18 +25,26 @@ function App() {
 
   return (
     <ListContextProvider>
-      <div>
-        <header>
-          <h1>Shopping List</h1>
+      <div
+        className="
+          border-b-8 border-teal-600 
+          flex-row max-w-4xl mx-auto 
+          bg-gray-100
+          shadow-2xl 
+          relative h-screen"
+      >
+        <header className="p-10">
+          <h1 className="text-5xl text-center text-teal-800">Smart Shopping</h1>
         </header>
-        <main className="main">
+        <main>
           <Route exact path="/">
             <Welcome />
           </Route>
           <Route path="/list" component={List} />
           <Route path="/addItem" component={AddItem} />
         </main>
-        <Navigation />
+
+        {token && <Navigation />}
       </div>
     </ListContextProvider>
   );

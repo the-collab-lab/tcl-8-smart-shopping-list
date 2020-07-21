@@ -67,36 +67,61 @@ const AddItemForm = props => {
           <p>You have already added this item.</p>
         </Modal>
       )}
-      <div className="form">
-        <form>
-          <label>
-            Item name
+
+      <div className="w-full max-w-md mx-auto p-5">
+        <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+          <div className="mb-4">
+            <label className="block text-gray-700 text-sm font-bold mb-2">
+              Item name
+            </label>
             <input
-              className="addItem-input"
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               type="text"
               name="name"
               placeholder="Eggs"
               onChange={handleChange}
               value={enteredValue.name}
             />
-          </label>
-          <label>
-            How soon do you expect to buy this again?
-            <select
-              className="addItem-select"
-              type="text"
-              name="nextPurchase"
-              value={enteredValue.nextPurchase}
-              onChange={handleChange}
+          </div>
+          <div className="mb-6">
+            <label className="block text-gray-700 text-sm font-bold mb-2">
+              How soon do you expect to buy this again?
+            </label>
+            <div className="relative">
+              <select
+                className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                id="grid-state"
+              >
+                <option value="7">Soon</option>
+                <option value="14">Kind of Soon</option>
+                <option value="30">Not soon</option>
+              </select>
+              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                <svg
+                  className="fill-current h-4 w-4"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                >
+                  <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex items-center justify-between">
+            <button
+              className="bg-transparent 
+              hover:bg-teal-500 text-teal-700 
+              font-semibold hover:text-white 
+              py-2 px-4 border border-teal-500 
+              hover:border-transparent rounded
+              block sm:inline"
+              type="submit"
+              onClick={addItem}
             >
-              <option value="7">Soon</option>
-              <option value="14">Kind of Soon</option>
-              <option value="30">Not soon</option>
-            </select>
-          </label>
-          <button className="submit-button" type="submit" onClick={addItem}>
-            Add Item
-          </button>
+              Add Item
+            </button>
+          </div>
         </form>
       </div>
     </Fragment>

@@ -57,45 +57,50 @@ const Item = ({ item, handleChange, deleteItem }) => {
   };
 
   return (
-    <>
-      <li className={`list-item ${addNextPurchaseStyling(item)}`}>
-        <label htmlFor={item.id}>
-          <input
-            className="checkbox"
-            type="checkbox"
-            checked={checked}
-            onChange={e => handleChange(e, item)}
-            id={item.id}
-          />
-        </label>
+    <li
+      className={`list-item  
+     text-teal-700 
+    font-semibold 
+    py-2 px-4 border border-teal-500 
+    hover:border-transparent rounded-lg
+    block  ${addNextPurchaseStyling(item)}`}
+    >
+      <label htmlFor={item.id}>
+        <input
+          className="checkbox"
+          type="checkbox"
+          checked={checked}
+          onChange={e => handleChange(e, item)}
+          id={item.id}
+        />
+      </label>
 
-        <span className={className} onClick={handleModalChange}>
-          {item.name}
-        </span>
+      <span className={className} onClick={handleModalChange}>
+        {item.name}
+      </span>
 
-        <button className="delete" onClick={() => deleteItem(item.id)}>
-          Delete
-        </button>
-        {showItemInfo && (
-          <Modal setDisplay={setShowItemInfo}>
-            <h2>{item.name}</h2>
-            <ul>
-              <li>Last purchased on {lastPurchasedDate}</li>
-              <li>
-                {item.nextPurchase > 1
-                  ? `Next purchase in ${item.nextPurchase} days`
-                  : `Next purchase in ${item.nextPurchase} day`}
-              </li>
-              <li>
-                {item.numberOfPurchases > 1
-                  ? `Previously purchased ${item.numberOfPurchases} times`
-                  : `Previously purchased once`}
-              </li>
-            </ul>
-          </Modal>
-        )}
-      </li>
-    </>
+      <button className="delete" onClick={() => deleteItem(item.id)}>
+        Delete
+      </button>
+      {showItemInfo && (
+        <Modal setDisplay={setShowItemInfo}>
+          <h2>{item.name}</h2>
+          <ul>
+            <li>Last purchased on {lastPurchasedDate}</li>
+            <li>
+              {item.nextPurchase > 1
+                ? `Next purchase in ${item.nextPurchase} days`
+                : `Next purchase in ${item.nextPurchase} day`}
+            </li>
+            <li>
+              {item.numberOfPurchases > 1
+                ? `Previously purchased ${item.numberOfPurchases} times`
+                : `Previously purchased once`}
+            </li>
+          </ul>
+        </Modal>
+      )}
+    </li>
   );
 };
 
