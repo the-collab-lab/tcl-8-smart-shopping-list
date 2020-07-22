@@ -55,53 +55,44 @@ const Welcome = ({ firestore }) => {
     push('/list');
   };
 
+  const buttonClasses = 'bg-primary p-3';
+
   return (
-    <div>
-      <div className="max-w-xs mx-auto">
-        <button
-          className="bg-transparent 
-            hover:bg-teal-500 text-teal-700 
-            font-semibold hover:text-white 
-            py-2 px-4 border border-teal-500 
-            hover:border-transparent rounded
-            block sm:inline "
-          onClick={createNewList}
-        >
-          Create a new list
+    <div className="flex flex-col bg-cream max-w-xs mx-auto p-5">
+      <button className={buttonClasses} onClick={createNewList}>
+        Create a new list
+      </button>
+      <p className="m-3 self-center">- or -</p>
+      {!showModal && (
+        <button className={buttonClasses} onClick={() => setModalDisplay(true)}>
+          Join an existing list
         </button>
+      )}
 
-        <span
-          className="text-xs cursor-pointer"
-          onClick={() => setModalDisplay(true)}
+      {showModal && (
+        <form
+          className="flex flex-col w-full max-w-sm p-6"
+          onSubmit={handleSubmitToken}
         >
-          {' '}
-          or join an existing list{' '}
-        </span>
-
-        {showModal && (
-          <form className="w-full max-w-sm p-6" onSubmit={handleSubmitToken}>
-            <div className="flex items-center border-b border-b-2 border-teal-500 py-2">
-              <input
-                type="text"
-                placeholder="litton pawn tilth"
-                onChange={handleChange}
-                value={token}
-                className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
-              />
-              <button className="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded">
-                Join
-              </button>
-              <button
-                onClick={() => setModalDisplay(false)}
-                class="flex-shrink-0 border-transparent border-4 text-teal-500 hover:text-teal-800 text-sm py-1 px-2 rounded"
-                type="button"
-              >
-                Cancel
-              </button>
-            </div>
-          </form>
-        )}
-      </div>
+          <div className="border-b border-b-2 border-teal-500 py-2">
+            <input
+              type="text"
+              placeholder="litton pawn tilth"
+              onChange={handleChange}
+              value={token}
+              className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+            />
+            <button className={buttonClasses}>Join</button>
+            <button
+              onClick={() => setModalDisplay(false)}
+              className={buttonClasses}
+              type="button"
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      )}
     </div>
   );
 };
