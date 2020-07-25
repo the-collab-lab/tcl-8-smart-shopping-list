@@ -40,8 +40,8 @@ function App() {
           bg-gray-100
           relative h-screen"
       >
-        <header className="p-10">
-          <h1 className="text-5xl text-center text-teal-800">Smart Shopping</h1>
+        <header className="p-4">
+          <h1 className="text-4xl text-center text-teal-800">Smart Shopping</h1>
         </header>
         <main>
           <Route exact path="/">
@@ -53,14 +53,14 @@ function App() {
 
         {token && <Navigation />}
         <span>
-          Photo by{' '}
+          {/* Photo by{' '}
           <a href="https://unsplash.com/@neryfabiola_?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">
             Nery Montenegro
           </a>{' '}
           on{' '}
           <a href="https://unsplash.com/s/photos/peach-color-food?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">
             Unsplash
-          </a>
+          </a> */}
         </span>
       </div>
     </ListContextProvider>

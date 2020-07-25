@@ -68,14 +68,17 @@ const AddItemForm = props => {
         </Modal>
       )}
 
-      <div className="w-full max-w-md mx-auto p-5">
-        <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-          <div className="mb-4">
+      <div className="flex justify-center m-2 h-center">
+        <form className="bg-gray-100 shadow-md h-60 w-full max-w-md mx-auto border-4 rounded-lg border border-blue-800 px-6 pt-10 pb-10">
+          <h3 className="text-darkgray text-xl font-bold text-center mb-4">
+            Add New Item
+          </h3>
+          <div className="mb-6">
             <label className="block text-gray-700 text-sm font-bold mb-2">
               Item name
             </label>
             <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow appearance-none border rounded w-full py-3 px-4 pr-8 text-gray-700 leading-tight focus:outline-none focus:border-gray-500"
               type="text"
               name="name"
               placeholder="Eggs"
@@ -89,7 +92,7 @@ const AddItemForm = props => {
             </label>
             <div className="relative">
               <select
-                className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                className="block appearance-none w-full border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="grid-state"
               >
                 <option value="7">Soon</option>
@@ -108,13 +111,13 @@ const AddItemForm = props => {
             </div>
           </div>
 
-          <div className="flex items-center justify-between">
+          <div className="flex justify-center">
             <button
-              className="bg-transparent 
+              className="bg-transparent w-64
               hover:bg-teal-500 text-teal-700 
               font-semibold hover:text-white 
-              py-2 px-4 border border-teal-500 
-              hover:border-transparent rounded
+              py-2 px-4 border border-teal-500  outlune-none
+              hover:border-gray-700 rounded
               block sm:inline"
               type="submit"
               onClick={addItem}
