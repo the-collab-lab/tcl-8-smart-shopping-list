@@ -8,6 +8,7 @@ const AddItemForm = props => {
   const { filteredList } = useContext(ListContext);
 
   const [showModal, setModalDisplay] = useState(false);
+  const [confirmationModal, setConfirmationModal] = useState(false);
 
   const emptyShoppingItem = {
     name: '',
@@ -50,6 +51,10 @@ const AddItemForm = props => {
           numberOfPurchases: 1,
           lastPurchasedDate: new Date(),
         });
+        setConfirmationModal(true);
+        setTimeout(() => {
+          setConfirmationModal(false);
+        }, 3000);
       }
     }
     resetInput();
@@ -89,7 +94,7 @@ const AddItemForm = props => {
             </label>
             <div className="relative">
               <select
-                className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                className="block appearance-none w-full border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="grid-state"
               >
                 <option value="7">Soon</option>
@@ -123,6 +128,11 @@ const AddItemForm = props => {
             </button>
           </div>
         </form>
+        {confirmationModal && (
+          <Modal setDisplay={setConfirmationModal}>
+            <h1>Item succesfully added</h1>
+          </Modal>
+        )}
       </div>
     </Fragment>
   );
