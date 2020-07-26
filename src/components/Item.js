@@ -61,13 +61,15 @@ const Item = ({ item, handleChange, deleteItem }) => {
   return (
     <li
       className={`list-item  
-    py-2 px-4 border-transparent
-    rounded-lg
-    block ${addNextPurchaseStyling(item)}`}
+                  py-2 px-4 border-transparent
+                  rounded-lg
+                  block ${addNextPurchaseStyling(item)}`
+                }
     >
       <label htmlFor={item.id}>
         <input
           className="checkbox"
+          title={`Checkbox is ${checked}`}
           type="checkbox"
           checked={checked}
           onChange={e => handleChange(e, item)}
@@ -86,6 +88,7 @@ const Item = ({ item, handleChange, deleteItem }) => {
       <button
         className="delete float-right"
         onClick={() => deleteItem(item.id)}
+        title="button for deleting the item"
       >
         <FontAwesomeIcon icon={faTrash} />
       </button>
