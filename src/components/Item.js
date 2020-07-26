@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Modal from './Modal.js';
 import '../styles/Item.css';
 import dayjs from 'dayjs';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const Item = ({ item, handleChange, deleteItem }) => {
   const [checked, setChecked] = useState(false);
@@ -59,15 +61,15 @@ const Item = ({ item, handleChange, deleteItem }) => {
   return (
     <li
       className={`list-item  
-     text-teal-700 
-    font-semibold 
-    py-2 px-4 border border-teal-500 
-    hover:border-transparent rounded-lg
-    block  ${addNextPurchaseStyling(item)}`}
+                  py-2 px-4 border-transparent
+                  rounded-lg
+                  block ${addNextPurchaseStyling(item)}`
+                }
     >
       <label htmlFor={item.id}>
         <input
           className="checkbox"
+          title={`Checkbox is ${checked}`}
           type="checkbox"
           checked={checked}
           onChange={e => handleChange(e, item)}
@@ -75,17 +77,28 @@ const Item = ({ item, handleChange, deleteItem }) => {
         />
       </label>
 
-      <span className={className} onClick={handleModalChange}>
+      <span
+        style={{ cursor: 'pointer' }}
+        className={className}
+        onClick={handleModalChange}
+      >
         {item.name}
       </span>
 
-      <button className="delete" onClick={() => deleteItem(item.id)}>
-        Delete
+      <button
+        className="delete float-right"
+        onClick={() => deleteItem(item.id)}
+        title="button for deleting the item"
+      >
+        <FontAwesomeIcon icon={faTrash} />
       </button>
+
       {showItemInfo && (
         <Modal setDisplay={setShowItemInfo}>
-          <h2>{item.name}</h2>
-          <ul>
+          <h2 className="text-xl text-bold tracking-wide text-primary">
+            {item.name}
+          </h2>
+          <ul className="text-darkgray">
             <li>Last purchased on {lastPurchasedDate}</li>
             <li>
               {item.nextPurchase > 1

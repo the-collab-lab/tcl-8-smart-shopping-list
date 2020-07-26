@@ -121,7 +121,7 @@ const List = ({ firestore }) => {
           };
           const sortedList = sortData(data);
           return isLoading ? (
-            <p>loading...</p>
+            <p className="text-center ">Loading your shopping list...</p>
           ) : (
             <>
               {error && <p>{error}</p>}
@@ -178,9 +178,13 @@ const List = ({ firestore }) => {
       />
       {showModal && (
         <Modal setDisplay={setModalDisplay}>
-          <h1>Warning</h1>
           <p>Are you sure you want to delete this item?</p>
-          <button onClick={() => deleteItem()}>Yes</button>
+          <button
+            className="text-primary hover:underline"
+            onClick={() => deleteItem()}
+          >
+            Yes
+          </button>
         </Modal>
       )}
     </Fragment>
