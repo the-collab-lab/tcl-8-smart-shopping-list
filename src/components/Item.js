@@ -62,11 +62,11 @@ const Item = ({ item, handleChange, deleteItem }) => {
     text-teal-700 
     py-2 px-4 border-transparent
     rounded-lg
-    block  ${addNextPurchaseStyling(item)}`}
+    block ${addNextPurchaseStyling(item)}`}
     >
       <label htmlFor={item.id}>
         <input
-          className="checkbox checked:bg-gray-900"
+          className="checkbox"
           type="checkbox"
           checked={checked}
           onChange={e => handleChange(e, item)}
@@ -79,7 +79,7 @@ const Item = ({ item, handleChange, deleteItem }) => {
       </span>
 
       <button className="delete" onClick={() => deleteItem(item.id)}>
-        Delete
+        x
       </button>
       {showItemInfo && (
         <Modal setDisplay={setShowItemInfo}>
