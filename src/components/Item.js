@@ -83,9 +83,11 @@ const Item = ({ item, handleChange, deleteItem }) => {
       </button>
 
       {showItemInfo && (
-        <Modal setDisplay={setShowItemInfo}>
-          <h2>{item.name}</h2>
-          <ul>
+        <Modal className="rounded-lg" setDisplay={setShowItemInfo}>
+          <h2 className="text-xl text-bold tracking-wide text-primary">
+            {item.name}
+          </h2>
+          <ul className="text-darkgray">
             <li>Last purchased on {lastPurchasedDate}</li>
             <li>
               {item.nextPurchase > 1
