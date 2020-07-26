@@ -15,11 +15,8 @@
 }
 
 .list-item {
-  border: 1px solid grey;
-  border-radius: 5px;
-  margin-bottom: 10px;
-  height: 35px;
-  cursor: pointer;
+  margin-bottom: 12px;
+  height: 40px;
 }
 
 .list-item div {
@@ -27,17 +24,17 @@
 }
 
 .soon-color {
-  background-color: #eb2f06;
+  background-color: #ff6b6b;
 }
 
 .kind-of-soon-color {
-  background-color: #eccc68;
+  background-color: #f5e9b3;
 }
 
 .not-soon-color {
-  background-color: #2ed573;
+  background-color: #bce8e5;
 }
 
 .inactive-color {
-  background-color: #747d8c;
+  background-color: #ebebeb;
 }

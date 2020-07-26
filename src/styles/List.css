@@ -11,6 +11,8 @@
 .ul-items {
   padding-left: 0rem;
   list-style: none;
+  height: 26rem;
+  overflow: scroll;
 }
 
 .search-container {
