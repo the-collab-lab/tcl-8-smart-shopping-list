@@ -17,6 +17,7 @@ const ListContextProvider = props => {
       }));
       setShoppingList(itemList);
     });
+
   }, []);
 
   return (
