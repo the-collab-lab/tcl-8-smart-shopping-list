@@ -41,7 +41,9 @@ function App() {
           relative h-screen"
       >
         <header className="p-4">
-          <h1 className="text-4xl text-center text-teal-800">Smart Shopping</h1>
+          <h1 className="text-3xl text-center text-teal-800 sm:text-4xl">
+            Smart Shopping
+          </h1>
         </header>
         <main>
           <Route exact path="/">
