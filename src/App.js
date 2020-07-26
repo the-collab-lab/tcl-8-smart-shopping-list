@@ -35,17 +35,16 @@ function App() {
         className="
           border-b-8 border-teal-600
           bg-center
-          bg-cover 
-          flex-row mx-auto 
+          bg-cover
+          flex 
+          flex-col mx-auto 
           bg-gray-100
           relative h-screen"
       >
         <header className="p-4">
-          <h1 className="text-3xl text-center text-teal-800 sm:text-4xl">
-            Smart Shopping
-          </h1>
+          <h1 className="text-4xl text-center text-teal-900">Smart Shopping</h1>
         </header>
-        <main>
+        <main className="flex-grow">
           <Route exact path="/">
             <Welcome />
           </Route>
@@ -53,17 +52,19 @@ function App() {
           <Route path="/addItem" component={AddItem} />
         </main>
 
-        {token && <Navigation />}
-        <span>
-          {/* Photo by{' '}
-          <a href="https://unsplash.com/@neryfabiola_?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">
-            Nery Montenegro
-          </a>{' '}
-          on{' '}
-          <a href="https://unsplash.com/s/photos/peach-color-food?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">
-            Unsplash
-          </a> */}
-        </span>
+        <footer className="self-end bg-cream p-2">
+          <span>
+            Photo by{' '}
+            <a href="https://unsplash.com/@neryfabiola_?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">
+              Nery Montenegro
+            </a>{' '}
+            on{' '}
+            <a href="https://unsplash.com/s/photos/peach-color-food?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">
+              Unsplash
+            </a>
+          </span>
+          {token && <Navigation />}
+        </footer>
       </div>
     </ListContextProvider>
   );
