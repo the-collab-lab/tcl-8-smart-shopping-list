@@ -81,6 +81,7 @@ const Item = ({ item, handleChange, deleteItem }) => {
       <button className="delete" onClick={() => deleteItem(item.id)}>
         x
       </button>
+
       {showItemInfo && (
         <Modal setDisplay={setShowItemInfo}>
           <h2>{item.name}</h2>

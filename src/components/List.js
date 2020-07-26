@@ -121,7 +121,7 @@ const List = ({ firestore }) => {
           };
           const sortedList = sortData(data);
           return isLoading ? (
-            <p>loading...</p>
+            <p className="text-center ">Loading your shopping cart...</p>
           ) : (
             <>
               {error && <p>{error}</p>}
