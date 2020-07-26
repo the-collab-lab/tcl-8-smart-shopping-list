@@ -80,6 +80,7 @@ const AddItemForm = props => {
             <input
               className="shadow appearance-none border border-gray-600 rounded-lg w-full mt-2 py-3 px-4 pr-8 text-gray-700 leading-tight focus:outline-none focus:border-teal-500"
               type="text"
+              aria-label="name"
               name="name"
               placeholder="Eggs"
               onChange={handleChange}
@@ -104,6 +105,7 @@ const AddItemForm = props => {
             <div className="flex flex-col items-center sm:flex-row">
               <label
                 className="bg-transparent text-center mt-2 border border-b-4 border-green-600 hover:bg-green-600 hover:text-white active:border-green-400 rounded-lg py-2 px-4 w-40 sm:w-full sm:mx-2"
+                checked
                 value={enteredValue.nextPurchase}
               >
                 Soon
@@ -154,14 +156,14 @@ const AddItemForm = props => {
           </div>
 
           {enteredValue.nextPurchase && (
-            <div className="flex flex-col items-center justify-around mb-2 max-w-18 text-gray-700 text-sm font-bold">
+            <p className="flex flex-col items-center justify-around mb-2 max-w-18 text-gray-700 text-sm font-bold">
               In {enteredValue.nextPurchase} days
-            </div>
+            </p>
           )}
 
           <div className="flex justify-center">
             <button
-              className="bg-teal-500 w-64
+              className="bg-teal-700 w-64
               hover:bg-teal-400 text-white 
               font-semibold hover:text-white 
               py-2 px-4 mt-2 border border-gray-700  outlune-none
