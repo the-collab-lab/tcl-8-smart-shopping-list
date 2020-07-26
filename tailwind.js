@@ -15,7 +15,7 @@ module.exports = {
       transparent: 'transparent',
       current: 'currentColor',
       // theme colors
-      primary: '#FF6B6B',
+      primary: { lighter: '#ffb1b1', default: '#FF6B6B', darker: '#ff4545' },
       secondary: '#4ECDC4',
       accent: '#FFE66D',
       cream: '#F7FFF7',
@@ -294,7 +294,7 @@ module.exports = {
       ...theme('spacing'),
       full: '100%',
       screen: '100vh',
-      half: '70vh'
+      half: '70vh',
     }),
     inset: {
       '0': '0',

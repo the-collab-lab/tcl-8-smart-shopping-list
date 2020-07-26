@@ -35,14 +35,6 @@ const Welcome = ({ firestore }) => {
             saveToken(token);
             push('/list');
           }
-          // NOTE: not sure why the below doesn't work
-          // snapshot.forEach(doc => {
-          //   if (!doc.exists) {
-          //     console.log('No List With that token!');
-          //   } else {
-          //     saveToken(e.target.value);
-          //   }
-          // })
         })
         .catch(err => console.log(err));
     }
@@ -55,17 +47,24 @@ const Welcome = ({ firestore }) => {
     push('/list');
   };
 
-  const buttonClasses = 'bg-primary p-3';
+  const buttonClasses =
+    'bg-primary p-3 hover:bg-primary-darker hover:text-white text-lg rounded';
 
   return (
-    <div className="flex flex-col bg-cream max-w-xs mx-auto p-5">
-      <button className={buttonClasses} onClick={createNewList}>
-        Create a new list
+    <div className="flex flex-col bg-cream rounded-lg border border-primary shadow-med max-w-xs mx-auto p-12 mt-8">
+      <button
+        className="bg-primary p-3 hover:bg-primary-darker hover:text-white text-lg rounded mb-5"
+        onClick={createNewList}
+      >
+        CREATE A NEW LIST
       </button>
-      <p className="m-3 self-center">- or -</p>
+      <p className="m-3 self-center text-large">- OR -</p>
       {!showModal && (
-        <button className={buttonClasses} onClick={() => setModalDisplay(true)}>
-          Join an existing list
+        <button
+          className="bg-primary p-3 hover:bg-primary-darker hover:text-white text-lg rounded mt-5"
+          onClick={() => setModalDisplay(true)}
+        >
+          JOIN AN EXISTING LIST
         </button>
       )}
 
