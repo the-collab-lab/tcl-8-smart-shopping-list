@@ -12,6 +12,8 @@
 
 .delete {
   margin-left: 1rem;
+  position: absolute;
+  right: 0;
 }
 
 .list-item {
@@ -27,17 +29,17 @@
 }
 
 .soon-color {
-  background-color: #eb2f06;
+  background-color: #ff6b6b;
 }
 
 .kind-of-soon-color {
-  background-color: #eccc68;
+  background-color: #f5e9b3;
 }
 
 .not-soon-color {
-  background-color: #2ed573;
+  background-color: #bce8e5;
 }
 
 .inactive-color {
-  background-color: #747d8c;
+  background-color: #d2d2d4;
 }
