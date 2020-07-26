@@ -105,7 +105,6 @@ const AddItemForm = props => {
             <div className="flex flex-col items-center sm:flex-row">
               <label
                 className="bg-transparent text-center mt-2 border border-b-4 border-green-600 hover:bg-green-600 hover:text-white active:border-green-400 rounded-lg py-2 px-4 w-40 sm:w-full sm:mx-2"
-                checked
                 value={enteredValue.nextPurchase}
               >
                 Soon
@@ -154,12 +153,9 @@ const AddItemForm = props => {
               </svg>
             </div>
           </div>
-
-          {enteredValue.nextPurchase && (
-            <p className="flex flex-col items-center justify-around mb-2 max-w-18 text-gray-700 text-sm font-bold">
-              In {enteredValue.nextPurchase} days
-            </p>
-          )}
+          <p className="flex flex-col items-center justify-around mb-2 max-w-18 text-gray-700 text-sm font-bold">
+            In {enteredValue.nextPurchase} days
+          </p>
 
           <div className="flex justify-center">
             <button
