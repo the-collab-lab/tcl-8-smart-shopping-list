@@ -179,7 +179,10 @@ const List = ({ firestore }) => {
       {showModal && (
         <Modal setDisplay={setModalDisplay}>
           <p>Are you sure you want to delete this item?</p>
-          <button className="text-primary" onClick={() => deleteItem()}>
+          <button
+            className="text-primary hover:underline"
+            onClick={() => deleteItem()}
+          >
             Yes
           </button>
         </Modal>
