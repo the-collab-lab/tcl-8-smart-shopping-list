@@ -84,7 +84,7 @@ const Item = ({ item, handleChange, deleteItem }) => {
       </span>
 
       <button
-        className="delete transform duration-300 hover:scale-125"
+        className="delete transform duration-300 hover:scale-125 float-right"
         onClick={() => deleteItem(item.id)}
       >
         <FontAwesomeIcon icon={faTrash} />
