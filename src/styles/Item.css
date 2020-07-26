@@ -15,10 +15,8 @@
 }
 
 .list-item {
-  border: 1px solid grey;
-  border-radius: 5px;
-  margin-bottom: 10px;
-  height: 35px;
+  margin-bottom: 12px;
+  height: 40px;
   cursor: pointer;
 }
 

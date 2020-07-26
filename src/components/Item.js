@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Modal from './Modal.js';
 import '../styles/Item.css';
 import dayjs from 'dayjs';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const Item = ({ item, handleChange, deleteItem }) => {
   const [checked, setChecked] = useState(false);
@@ -59,7 +61,6 @@ const Item = ({ item, handleChange, deleteItem }) => {
   return (
     <li
       className={`list-item  
-    text-teal-700 
     py-2 px-4 border-transparent
     rounded-lg
     block ${addNextPurchaseStyling(item)}`}
@@ -74,16 +75,23 @@ const Item = ({ item, handleChange, deleteItem }) => {
         />
       </label>
 
-      <span className={className} onClick={handleModalChange}>
+      <span
+        style={{ cursor: 'pointer' }}
+        className={className}
+        onClick={handleModalChange}
+      >
         {item.name}
       </span>
 
-      <button className="delete" onClick={() => deleteItem(item.id)}>
-        x
+      <button
+        className="delete transform duration-300 hover:scale-125"
+        onClick={() => deleteItem(item.id)}
+      >
+        <FontAwesomeIcon icon={faTrash} />
       </button>
 
       {showItemInfo && (
-        <Modal className="rounded-lg" setDisplay={setShowItemInfo}>
+        <Modal setDisplay={setShowItemInfo}>
           <h2 className="text-xl text-bold tracking-wide text-primary">
             {item.name}
           </h2>
