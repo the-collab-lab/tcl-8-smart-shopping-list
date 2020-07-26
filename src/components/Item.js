@@ -59,11 +59,12 @@ const Item = ({ item, handleChange, deleteItem }) => {
   return (
     <li
       className={`list-item  
-     text-teal-700 
-    font-semibold 
-    py-2 px-4 border border-teal-500 
-    hover:border-transparent rounded-lg
-    block  ${addNextPurchaseStyling(item)}`}
+                  text-teal-700 
+                  font-semibold 
+                  py-2 px-4 border border-teal-500 
+                  hover:border-transparent rounded-lg
+                  block  ${addNextPurchaseStyling(item)}`
+                }
     >
       <label htmlFor={item.id}>
         <input

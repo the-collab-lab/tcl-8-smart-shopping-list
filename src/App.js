@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import './App.css';
 import { Route } from 'react-router-dom';
@@ -6,7 +6,6 @@ import AddItem from './components/AddItem';
 import List from './components/List';
 import Welcome from './components/Welcome';
 import { Navigation } from './components/Navigation';
-
 import ListContextProvider from './context/ListContext';
 
 function App() {
@@ -22,6 +21,7 @@ function App() {
     checkForToken() ? push('/list') : push('/');
     setToken(localStorage.getItem('userToken'));
   }, [push]);
+
 
   return (
     <ListContextProvider>
@@ -44,7 +44,7 @@ function App() {
           <Route path="/addItem" component={AddItem} />
         </main>
 
-        {token && <Navigation />}
+        <Navigation />
       </div>
     </ListContextProvider>
   );
