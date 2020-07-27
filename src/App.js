@@ -54,11 +54,11 @@ function App() {
 
         <footer className="self-end bg-cream p-2">
           <span>
-            Photo by{' '}
+            Photo by
             <a href="https://unsplash.com/@neryfabiola_?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">
               Nery Montenegro
-            </a>{' '}
-            on{' '}
+            </a>
+            on
             <a href="https://unsplash.com/s/photos/peach-color-food?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">
               Unsplash
             </a>

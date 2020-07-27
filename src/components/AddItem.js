@@ -91,17 +91,6 @@ const AddItemForm = props => {
             <label className="block text-gray-700 text-sm font-bold mb-2">
               How soon do you expect to buy this again?
             </label>
-            {/* <select
-                className="block appearance-none w-full border border-teal-300 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-teal-500"
-                id="grid-state"
-                name="nextPurchase"
-                value={enteredValue.nextPurchase}
-                onChange={handleChange}
-              >
-                <option value="7">Soon</option>
-                <option value="14">Kind of Soon</option>
-                <option value="30">Not soon</option>
-              </select> */}
             <div className="flex flex-col items-center sm:flex-row">
               <label
                 className="bg-transparent text-center mt-2 border border-b-4 border-green-600 hover:bg-green-600 hover:text-white active:border-green-400 rounded-lg py-2 px-4 w-40 sm:w-full sm:mx-2"
