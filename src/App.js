@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import './App.css';
 import { Route } from 'react-router-dom';
@@ -22,21 +22,13 @@ function App() {
     setToken(localStorage.getItem('userToken'));
   }, [push]);
 
-
   return (
     <ListContextProvider>
-      <div
-        className="
-          border-b-8 border-teal-600 
-          flex-row max-w-4xl mx-auto 
-          bg-gray-100
-          shadow-2xl 
-          relative h-screen"
-      >
-        <header className="p-10">
-          <h1 className="text-5xl text-center text-teal-800">Smart Shopping</h1>
+      <div>
+        <header className="p-4">
+          <h1 className="text-4xl text-center text-teal-900">Smart Shopping</h1>
         </header>
-        <main>
+        <main className="flex-grow">
           <Route exact path="/">
             <Welcome />
           </Route>
