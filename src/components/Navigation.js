@@ -1,10 +1,9 @@
-import React , {useContext} from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { ListContext } from '../context/ListContext';
 
 export const Navigation = () => {
   return (
-    <nav className="flex max-w-full absolute bottom-0 left-0 right-0 inline-block m-2">
+    <nav className="flex max-w-full absolute bottom-0 left-0 right-0 m-2">
       <div style={{ width: '50%' }}>
         <NavLink exact to="/list" activeClassName="active">
           <button

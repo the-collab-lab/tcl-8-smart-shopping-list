@@ -9,7 +9,7 @@ import { Navigation } from './components/Navigation';
 import ListContextProvider from './context/ListContext';
 
 function App() {
-  const [token, setToken] = useState('');
+  const [setToken] = useState('');
   let history = useHistory();
   const push = history.push;
 
@@ -20,7 +20,7 @@ function App() {
   useEffect(() => {
     checkForToken() ? push('/list') : push('/');
     setToken(localStorage.getItem('userToken'));
-  }, [push]);
+  }, [push, setToken]);
 
   return (
     <ListContextProvider>
