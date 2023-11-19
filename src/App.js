@@ -9,7 +9,8 @@ import { Navigation } from './components/Navigation';
 import ListContextProvider from './context/ListContext';
 
 function App() {
-  const [setToken] = useState('');
+  // eslint-disable-next-line no-unused-vars
+  const [token, setToken] = useState('');
   let history = useHistory();
   const push = history.push;
 
@@ -20,7 +21,7 @@ function App() {
   useEffect(() => {
     checkForToken() ? push('/list') : push('/');
     setToken(localStorage.getItem('userToken'));
-  }, [push, setToken]);
+  }, [push]);
 
   return (
     <ListContextProvider>
