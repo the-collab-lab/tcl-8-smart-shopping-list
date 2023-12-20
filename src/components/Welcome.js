@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { withFirestore } from 'react-firestore';
-import GetToken from '../lib/token.js';
 
 const Welcome = ({ firestore }) => {
   const [token, setToken] = useState('');
@@ -41,10 +40,11 @@ const Welcome = ({ firestore }) => {
   };
 
   const createNewList = () => {
-    const newToken = GetToken();
-    saveToken(newToken);
-    setToken(newToken);
-    push('/list');
+    // const newToken = GetToken();
+    // saveToken(newToken);
+    // setToken(newToken);
+    // push('/list');
+    console.log('Creating new lists is no longer supported');
   };
 
   const buttonClasses =

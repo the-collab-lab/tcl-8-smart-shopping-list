@@ -7,6 +7,7 @@ import List from './components/List';
 import Welcome from './components/Welcome';
 import { Navigation } from './components/Navigation';
 import ListContextProvider from './context/ListContext';
+import { ArchivalNoticeModal } from '@the-collab-lab/shopping-list-utils';
 
 function App() {
   // eslint-disable-next-line no-unused-vars
@@ -32,6 +33,7 @@ function App() {
         <main className="flex-grow">
           <Route exact path="/">
             <Welcome />
+            <ArchivalNoticeModal />
           </Route>
           <Route path="/list" component={List} />
           <Route path="/addItem" component={AddItem} />
